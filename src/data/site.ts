@@ -46,11 +46,11 @@ export const site = {
 };
 
 export const nav = [
-  { href: "/",          label: "Haus",       num: "I"   },
-  { href: "/zimmer",    label: "Zimmer",     num: "II"  },
-  { href: "/fruehstueck", label: "Frühstück", num: "III" },
-  { href: "/umgebung",  label: "Umgebung",   num: "IV"  },
-  { href: "/kontakt",   label: "Kontakt",    num: "V"   },
+  { href: "/",            label: "Haus",      num: "I",   numArabic: "1" },
+  { href: "/zimmer",      label: "Zimmer",    num: "II",  numArabic: "2" },
+  { href: "/fruehstueck", label: "Frühstück", num: "III", numArabic: "3" },
+  { href: "/umgebung",    label: "Umgebung",  num: "IV",  numArabic: "4" },
+  { href: "/kontakt",     label: "Kontakt",   num: "V",   numArabic: "5" },
 ];
 
 export const rooms = [

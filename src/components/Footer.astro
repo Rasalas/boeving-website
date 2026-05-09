@@ -40,8 +40,8 @@ const year = new Date().getFullYear();
           <span>oder per Mail: {site.contact.email}</span>
         </a>
       </div>
-      <p class="mt-4 text-xs text-[var(--color-paper)]/45">
-        Telefon nur als Notfall: <span class="num-marker">{site.contact.phone}</span> · Mo–Sa, 16–20&nbsp;Uhr
+      <p class="mt-4 text-xs text-[var(--color-paper)]/55">
+        Lieber telefonisch? — gerne <span class="num-marker">{site.contact.phone}</span>, Mo–Sa 16–20&nbsp;Uhr.
       </p>
     </div>
 
@@ -49,8 +49,12 @@ const year = new Date().getFullYear();
       <p class="eyebrow text-[var(--color-paper)]/50">Seiten</p>
       <ul class="mt-4 space-y-2.5 text-[var(--color-paper)]/85">
         {nav.map((n) => (
-          <li><a href={asset(n.href)} class="inline-flex items-baseline gap-2 hover:text-[var(--color-gold-300)] transition-colors">
-            <span class="num-marker text-[10px] opacity-50">{n.num}</span>
+          <li><a href={asset(n.href)} class="group inline-flex items-baseline gap-2 hover:text-[var(--color-gold-300)] transition-colors">
+            <span
+              class="num-marker text-[10px] opacity-50 inline-block min-w-[1.5em]"
+              data-decrypt={n.numArabic}
+              data-decrypt-original={n.num}
+            >{n.num}</span>
             {n.label}
           </a></li>
         ))}

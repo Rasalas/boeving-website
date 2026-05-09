@@ -1,0 +1,76 @@
+---
+// Hover/focus-driven cipher animation for [data-decrypt] elements.
+// On enter: cycles glyphs and resolves to data-decrypt (Arabic).
+// On leave: same effect back to data-decrypt-original (Roman).
+---
+
+<script>
+  const CHARSET = "0123456789IVXLCDM·✦*+";
+  const DURATION = 320;
+
+  type Decryptable = HTMLElement & {
+    _decryptRaf?: number;
+    _decryptOriginal?: string;
+  };
+
+  const tween = (el: Decryptable, target: string) => {
+    if (el._decryptRaf) cancelAnimationFrame(el._decryptRaf);
+    const from = el.textContent ?? "";
+    const steps = Math.max(target.length, from.length, 1);
+    const padded = target.padEnd(steps, " ").slice(0, steps);
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / DURATION);
+      let out = "";
+      for (let i = 0; i < steps; i++) {
+        const charT = Math.max(0, Math.min(1, (t - i / steps) * 2.4));
+        if (charT >= 1) {
+          out += padded[i];
+        } else {
+          out += CHARSET[Math.floor(Math.random() * CHARSET.length)];
+        }
+      }
+      el.textContent = out.replace(/\s+$/, "");
+      if (t < 1) el._decryptRaf = requestAnimationFrame(tick);
+    };
+    el._decryptRaf = requestAnimationFrame(tick);
+  };
+
+  const init = () => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
+    const targets = document.querySelectorAll<Decryptable>("[data-decrypt]");
+    targets.forEach((el) => {
+      const arabic = el.dataset.decrypt ?? "";
+      const original = el.dataset.decryptOriginal ?? el.textContent ?? "";
+      el._decryptOriginal = original;
+
+      const trigger = el.closest("a, button") as HTMLElement | null;
+      const host = trigger ?? el;
+      let active = false;
+
+      const enter = () => {
+        if (active) return;
+        active = true;
+        tween(el, arabic);
+      };
+      const leave = () => {
+        active = false;
+        tween(el, original);
+      };
+
+      host.addEventListener("mouseenter", enter);
+      host.addEventListener("mouseleave", leave);
+      host.addEventListener("focusin", enter);
+      host.addEventListener("focusout", leave);
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+</script>

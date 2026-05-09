@@ -23,25 +23,14 @@ import { site } from "~/data/site";
         <span class="hidden lg:inline num-marker text-[var(--color-gold-300)] font-semibold">−{site.booking.weekendDiscount}&nbsp;€</span>
       </p>
     </div>
-    <div class="flex items-center gap-3 shrink-0">
-      <a
-        href={site.booking.directUrl}
-        target="_blank"
-        rel="noopener"
-        class="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-gold-500)] px-3 py-1 text-xs font-medium text-[var(--color-ink-900)] hover:bg-[var(--color-gold-400)] transition-colors"
-      >
-        <span>Direkt buchen</span>
-        <span class="font-display">→</span>
-      </a>
-      <button
-        type="button"
-        class="inline-flex h-7 w-7 items-center justify-center rounded-sm text-[var(--color-paper)]/55 hover:text-[var(--color-paper)] transition-colors"
-        aria-label="Hinweis schließen"
-        data-notice-close
-      >
-        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5l14 14M19 5L5 19"/></svg>
-      </button>
-    </div>
+    <button
+      type="button"
+      class="shrink-0 inline-flex h-7 w-7 items-center justify-center rounded-sm text-[var(--color-paper)]/45 hover:text-[var(--color-paper)] transition-colors"
+      aria-label="Hinweis schließen"
+      data-notice-close
+    >
+      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
   </div>
 </aside>
 
