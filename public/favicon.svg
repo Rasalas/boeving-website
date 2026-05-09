@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#112655"/>
+  <g transform="translate(32 38)" fill="#d9b25c">
+    <path d="M-14 -6l1.7 4.1L-8 -1.5l-3.3 2.9 1 4.4L-14 3.4l-3.7 2.4 1-4.4L-20 -1.5l4.3 -.4z"/>
+    <path d="M0 -10l1.7 4.1 4.3.4-3.3 2.9 1 4.4L0 -.6 -3.7 1.8l1-4.4-3.3-2.9 4.3-.4z"/>
+    <path d="M14 -6l1.7 4.1 4.3.4-3.3 2.9 1 4.4L14 3.4l-3.7 2.4 1-4.4L8 -1.5l4.3 -.4z"/>
+  </g>
+  <text x="32" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#fbf8ee" font-style="italic">HB</text>
+</svg>

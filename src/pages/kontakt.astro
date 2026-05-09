@@ -1,0 +1,273 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import SectionLabel from "~/components/SectionLabel.astro";
+import { site, rooms } from "~/data/site";
+import { asset } from "~/utils/asset";
+---
+
+<Layout
+  title="Kontakt & Anfrage · Hotel Böving"
+  description="Telefon, E-Mail, Anfrage­formular für das Hotel Böving in Breckerfeld. Direkt­buchung — günstiger als jedes Portal."
+>
+
+  <!-- Hero with contact details overlaid -->
+  <section class="relative pt-36 lg:pt-44 pb-16 bg-[var(--color-paper)] overflow-hidden">
+    <div class="container-page">
+      <p class="eyebrow flex items-center gap-3 anim-fade">
+        <span class="num-marker text-[var(--color-gold-700)]">— V</span>
+        Kontakt
+      </p>
+      <h1 class="display-1 mt-6 max-w-[18ch] anim-rise">
+        Schreiben Sie uns
+        <span class="swash-italic text-[var(--color-gold-700)]">wie einem Brief.</span>
+      </h1>
+      <p class="mt-8 max-w-xl text-lg text-[var(--color-ink-700)]/85 anim-rise delay-300 leading-relaxed">
+        Eine Reservierung möchten Sie am schnellsten online erledigen — zwei Minuten,
+        sofortige Bestätigung, garantiert günstiger als jedes Portal.
+      </p>
+    </div>
+  </section>
+
+  <!-- Direct booking primary CTA -->
+  <section class="py-16 bg-[var(--color-ink-900)] text-[var(--color-paper)] relative overflow-hidden">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image: repeating-linear-gradient(135deg, var(--color-gold-500) 0 1px, transparent 1px 18px);"></div>
+    <div class="container-page relative grid grid-cols-12 gap-x-6 gap-y-8 items-center">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="num-marker text-[10px] text-[var(--color-gold-300)] tracking-[0.25em]">— RESERVIERUNG · OPTION A</p>
+        <h2 class="display-2 mt-4 text-[var(--color-paper)]">
+          Online buchen.
+          <span class="swash-italic text-[var(--color-gold-400)]">Sofort.</span>
+        </h2>
+        <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-[var(--color-paper)]/80">
+          <li class="flex items-baseline gap-2"><span class="text-[var(--color-gold-300)]">+</span> Bestpreis­garantie</li>
+          <li class="flex items-baseline gap-2"><span class="text-[var(--color-gold-300)]">+</span> Sofortige Bestätigung per Mail</li>
+          <li class="flex items-baseline gap-2"><span class="text-[var(--color-gold-300)]">+</span> Kostenlose Stornierung bis 18 Uhr Anreisetag</li>
+          <li class="flex items-baseline gap-2"><span class="text-[var(--color-gold-300)]">+</span> Garantiert −{site.booking.directDiscount}&nbsp;€/Nacht ggü. Portalen</li>
+        </ul>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:pl-6 self-stretch flex">
+        <a
+          href={site.booking.directUrl}
+          target="_blank"
+          rel="noopener"
+          class="group flex-1 relative flex flex-col justify-between gap-4 rounded-sm bg-[var(--color-gold-500)] p-6 text-[var(--color-ink-900)] hover:bg-[var(--color-gold-400)] transition-colors"
+        >
+          <span class="num-marker text-[10px] tracking-[0.25em]">— ÜBER VIATO</span>
+          <span class="font-display text-3xl leading-tight">
+            Verfügbarkeit
+            <span class="swash-italic">prüfen &amp;</span><br/>
+            direkt buchen
+          </span>
+          <span class="flex items-center justify-between border-t border-[var(--color-ink-900)]/15 pt-4">
+            <span class="num-marker text-[10px] tracking-[0.18em]">SOFORT BESTÄTIGT</span>
+            <span class="font-display text-2xl group-hover:translate-x-0.5 transition-transform">→</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Big contact card / mailbox layout -->
+  <section class="py-20 lg:py-28 bg-[var(--color-paper-2)]/45 border-y border-[var(--color-ink-700)]/15">
+    <div class="container-page grid grid-cols-12 gap-x-6 gap-y-12">
+      <!-- Email -->
+      <div class="col-span-12 md:col-span-4 border-t border-[var(--color-ink-700)]/20 pt-6">
+        <p class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— E-MAIL</p>
+        <a href={`mailto:${site.contact.email}`} class="block mt-4 group">
+          <p class="font-display text-3xl leading-none break-all group-hover:text-[var(--color-gold-700)] transition-colors">
+            {site.contact.email}
+          </p>
+          <p class="mt-3 text-[var(--color-ink-700)]/65 text-sm">Antwort meist am gleichen Tag.</p>
+        </a>
+      </div>
+
+      <!-- Address -->
+      <div class="col-span-12 md:col-span-4 border-t border-[var(--color-ink-700)]/20 pt-6">
+        <p class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— ANSCHRIFT</p>
+        <address class="mt-4 not-italic">
+          <p class="font-display text-2xl leading-tight">{site.name}</p>
+          <p class="text-[var(--color-ink-700)]/85 mt-1">{site.address.street}</p>
+          <p class="text-[var(--color-ink-700)]/85">{site.address.zip} {site.address.city}</p>
+          <p class="text-[var(--color-ink-700)]/65 text-sm mt-2">{site.address.country}</p>
+        </address>
+        <a href={`https://www.openstreetmap.org/?mlat=${site.geo.lat}&mlon=${site.geo.lng}&zoom=16`} target="_blank" rel="noopener" class="mt-4 inline-flex items-center gap-2 text-sm text-[var(--color-gold-700)] hover:text-[var(--color-gold-600)]">
+          <span>In Karte öffnen</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Phone (deemphasized) -->
+      <div class="col-span-12 md:col-span-4 border-t border-[var(--color-ink-700)]/20 pt-6">
+        <p class="num-marker text-[10px] text-[var(--color-ink-700)]/55 tracking-[0.2em]">— TELEFON · NUR NOTFALLS</p>
+        <a href={`tel:${site.contact.phoneRaw}`} class="block mt-4 group">
+          <p class="font-display text-2xl leading-none num-marker text-[var(--color-ink-700)]/80 group-hover:text-[var(--color-ink-900)] transition-colors">
+            {site.contact.phone}
+          </p>
+          <p class="mt-3 text-[var(--color-ink-700)]/55 text-xs leading-relaxed">
+            Wir sind ein kleines Haus — am Telefon erreichen Sie uns nur Mo–Sa zwischen 16 und 20 Uhr.
+            Eine Online-Buchung oder eine E-Mail kommt 24/7 an.
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form + sidebar -->
+  <section class="py-24 lg:py-32 bg-[var(--color-paper)]">
+    <div class="container-page grid grid-cols-12 gap-x-6 gap-y-12">
+      <div class="col-span-12 lg:col-span-7">
+        <p class="num-marker text-[10px] text-[var(--color-ink-700)]/55 tracking-[0.25em]">— RESERVIERUNG · OPTION B</p>
+        <h2 class="display-2 mt-4">
+          Lieber persönlich?<br/>
+          <span class="swash-italic text-[var(--color-gold-700)]">Schreiben Sie uns.</span>
+        </h2>
+        <p class="mt-4 text-[var(--color-ink-700)]/70 text-sm max-w-xl">
+          Sondertermine, größere Gruppen, Allergien, Sonderwünsche —
+          wenn etwas nicht in das Online-Buchungs­raster passt, dieses Formular nutzen.
+          Antwort meist am selben Tag.
+        </p>
+
+        <form class="mt-12 grid grid-cols-2 gap-x-6 gap-y-6" action={`mailto:${site.contact.email}`} method="post" enctype="text/plain">
+          <label class="col-span-2 md:col-span-1 group">
+            <span class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— NAME</span>
+            <input type="text" name="name" required class="mt-2 w-full bg-transparent border-b border-[var(--color-ink-700)]/35 py-3 text-lg font-display focus:outline-none focus:border-[var(--color-gold-700)] transition-colors" placeholder="Ihr Name" />
+          </label>
+          <label class="col-span-2 md:col-span-1 group">
+            <span class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— E-MAIL</span>
+            <input type="email" name="email" required class="mt-2 w-full bg-transparent border-b border-[var(--color-ink-700)]/35 py-3 text-lg font-display focus:outline-none focus:border-[var(--color-gold-700)] transition-colors" placeholder="ihre@adresse.de" />
+          </label>
+
+          <label class="col-span-2 md:col-span-1 group">
+            <span class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— ANREISE</span>
+            <input type="date" name="anreise" class="mt-2 w-full bg-transparent border-b border-[var(--color-ink-700)]/35 py-3 text-lg font-display num-marker focus:outline-none focus:border-[var(--color-gold-700)] transition-colors" />
+          </label>
+          <label class="col-span-2 md:col-span-1 group">
+            <span class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— ABREISE</span>
+            <input type="date" name="abreise" class="mt-2 w-full bg-transparent border-b border-[var(--color-ink-700)]/35 py-3 text-lg font-display num-marker focus:outline-none focus:border-[var(--color-gold-700)] transition-colors" />
+          </label>
+
+          <label class="col-span-2 md:col-span-1 group">
+            <span class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— PERSONEN</span>
+            <select name="personen" class="mt-2 w-full bg-transparent border-b border-[var(--color-ink-700)]/35 py-3 text-lg font-display focus:outline-none focus:border-[var(--color-gold-700)] transition-colors">
+              <option>1 Person</option>
+              <option>2 Personen</option>
+              <option>3 Personen</option>
+              <option>4+ Personen</option>
+            </select>
+          </label>
+          <label class="col-span-2 md:col-span-1 group">
+            <span class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— ZIMMERWUNSCH</span>
+            <select name="zimmer" class="mt-2 w-full bg-transparent border-b border-[var(--color-ink-700)]/35 py-3 text-lg font-display focus:outline-none focus:border-[var(--color-gold-700)] transition-colors">
+              <option value="">— offen —</option>
+              {rooms.map((r) => <option value={r.slug}>{r.name}</option>)}
+            </select>
+          </label>
+
+          <label class="col-span-2 group">
+            <span class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— NACHRICHT</span>
+            <textarea name="nachricht" rows="5" class="mt-2 w-full bg-transparent border-b border-[var(--color-ink-700)]/35 py-3 text-base focus:outline-none focus:border-[var(--color-gold-700)] transition-colors resize-none" placeholder="Was sollten wir wissen? — Spezielle Wünsche, Allergien, Anreise­zeit"></textarea>
+          </label>
+
+          <div class="col-span-2 flex flex-wrap items-center gap-x-8 gap-y-4 pt-4">
+            <button type="submit" class="group inline-flex items-center gap-3 rounded-full border border-[var(--color-ink-700)] bg-[var(--color-ink-700)] px-7 py-4 text-[var(--color-bone)] hover:bg-[var(--color-ink-800)]">
+              <span class="font-medium tracking-wide">Anfrage senden</span>
+              <span class="font-display group-hover:translate-x-0.5 transition-transform">→</span>
+            </button>
+            <p class="text-xs text-[var(--color-ink-700)]/55 max-w-xs">
+              Mit dem Senden willigen Sie ein, dass wir Ihre Daten zur Bearbeitung der Anfrage verwenden dürfen.
+              Mehr in der <a href={asset("/datenschutz")} class="underline">Datenschutzerklärung</a>.
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="col-span-12 lg:col-span-5 lg:pl-10">
+        <div class="relative rounded-sm bg-[var(--color-ink-900)] text-[var(--color-paper)] p-7 lg:p-9 overflow-hidden">
+          <span aria-hidden="true" class="absolute -top-px -right-px num-marker text-[10px] tracking-[0.18em] bg-[var(--color-gold-500)] text-[var(--color-ink-900)] px-2.5 py-1 font-semibold">
+            BESTPREIS
+          </span>
+          <p class="eyebrow text-[var(--color-gold-300)] mt-2">— Schneller geht's online</p>
+          <p class="font-display text-3xl leading-tight mt-4 text-[var(--color-paper)]">
+            <span class="swash-italic text-[var(--color-gold-400)]">In zwei Minuten</span><br/>
+            gebucht und bestätigt.
+          </p>
+          <p class="text-[var(--color-paper)]/75 mt-4 text-sm leading-relaxed">
+            Direkt online <span class="num-marker text-[var(--color-gold-300)]">−{site.booking.directDiscount}&nbsp;€</span>
+            pro Nacht. Wochenende Fr–So zusätzlich
+            <span class="num-marker text-[var(--color-gold-300)]">−{site.booking.weekendDiscount}&nbsp;€</span>.
+          </p>
+          <a
+            href={site.booking.directUrl}
+            target="_blank"
+            rel="noopener"
+            class="group mt-6 flex items-center justify-between gap-3 rounded-full bg-[var(--color-gold-500)] px-5 py-3.5 text-[var(--color-ink-900)] hover:bg-[var(--color-gold-400)] transition-colors"
+          >
+            <span class="font-medium">Direkt buchen</span>
+            <span class="font-display group-hover:translate-x-0.5 transition-transform">→</span>
+          </a>
+          <p class="mt-3 text-[10px] text-[var(--color-paper)]/45 num-marker tracking-[0.18em] text-center">
+            ÜBER VIATO · SOFORT BESTÄTIGT
+          </p>
+        </div>
+
+        <div class="mt-8 rounded-sm border border-[var(--color-ink-700)]/15 p-7 lg:p-9">
+          <p class="eyebrow text-[var(--color-gold-700)]">— Ankunft & Abreise</p>
+          <dl class="mt-6 space-y-4 text-sm">
+            <div class="flex justify-between"><dt>Anreise</dt><dd class="num-marker">{site.hours.arrival}</dd></div>
+            <div class="flex justify-between"><dt>Abreise</dt><dd class="num-marker">{site.hours.departure}</dd></div>
+            <div class="flex justify-between"><dt>Sonntags Anreise</dt><dd class="swash-italic text-[var(--color-gold-700)]">— bitte nein —</dd></div>
+            <div class="flex justify-between"><dt>Frühstück Mo</dt><dd class="swash-italic text-[var(--color-gold-700)]">Ruhetag</dd></div>
+          </dl>
+        </div>
+
+        <div class="mt-8">
+          <p class="eyebrow text-[var(--color-gold-700)]">— So kommen Sie hierher</p>
+          <ul class="mt-4 space-y-3 text-sm text-[var(--color-ink-700)]/85">
+            <li class="flex items-baseline gap-3">
+              <span class="num-marker text-[10px] text-[var(--color-gold-700)]">→</span>
+              <span><strong>Mit dem Auto:</strong> A1 Abfahrt Volmarstein, dann B226 Richtung Breckerfeld. Park­plätze direkt am Haus.</span>
+            </li>
+            <li class="flex items-baseline gap-3">
+              <span class="num-marker text-[10px] text-[var(--color-gold-700)]">→</span>
+              <span><strong>Mit der Bahn:</strong> Hagen Hbf, von dort 25 Min mit Bus 510 (oder Taxi für ~25 €).</span>
+            </li>
+            <li class="flex items-baseline gap-3">
+              <span class="num-marker text-[10px] text-[var(--color-gold-700)]">→</span>
+              <span><strong>Mit dem E-Auto:</strong> Lade­säule direkt an der Fassade — kostenfrei für Hausgäste.</span>
+            </li>
+            <li class="flex items-baseline gap-3">
+              <span class="num-marker text-[10px] text-[var(--color-gold-700)]">→</span>
+              <span><strong>Mit dem Rad:</strong> Abschließbare Garage — werfen Sie Ihre Räder einfach rein.</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Map embed -->
+  <section class="py-16 bg-[var(--color-paper-2)]/40">
+    <div class="container-page">
+      <SectionLabel num="II" title="Lage" />
+      <div class="mt-6 grid grid-cols-12 gap-6 items-center">
+        <div class="col-span-12 md:col-span-5">
+          <p class="display-3">
+            Frankfurter Straße 45.
+            <span class="swash-italic text-[var(--color-gold-700)]">An der Ecke,</span> mit dem Goldregen.
+          </p>
+        </div>
+        <figure class="col-span-12 md:col-span-7 aspect-[16/9] rounded-sm overflow-hidden border border-[var(--color-ink-700)]/10">
+          <iframe
+            title="Karte zum Hotel Böving"
+            class="w-full h-full"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=7.4575%2C51.2543%2C7.4775%2C51.2643&amp;layer=mapnik&amp;marker=51.25926%2C7.46751"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+</Layout>

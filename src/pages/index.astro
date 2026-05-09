@@ -1,0 +1,483 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import Star from "~/components/Star.astro";
+import SectionLabel from "~/components/SectionLabel.astro";
+import BookButton from "~/components/BookButton.astro";
+import { site, rooms, amenities, localPois } from "~/data/site";
+import { asset } from "~/utils/asset";
+---
+
+<Layout
+  title="Hotel Böving · garni · Familienhotel in Breckerfeld seit 1890"
+  description="Drei-Sterne-Familienhotel im Sauerland, vier Generationen, 17 Zimmer. Hausgemachtes Frühstück, kostenfreies Wi-Fi, E-Auto-Ladestation. Jetzt direkt buchen — günstiger als jedes Portal."
+>
+
+  <!-- ============================================ -->
+  <!--           HERO  ·  the front door            -->
+  <!-- ============================================ -->
+  <section class="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-[var(--color-ink-900)] text-[var(--color-paper)]">
+    <!-- Background image with Ken Burns -->
+    <div class="absolute inset-0">
+      <img
+        src={asset("/images/exterior/facade-corner.jpg")}
+        alt="Hotel Böving — Eckansicht in der Frankfurter Straße"
+        class="w-full h-full object-cover anim-ken-burns"
+        loading="eager"
+      />
+      <!-- Editorial gradient veil -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[var(--color-ink-900)]/85 via-[var(--color-ink-900)]/35 to-[var(--color-ink-900)]/95"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[var(--color-ink-900)]/70 via-transparent to-transparent"></div>
+      <!-- Vignette -->
+      <div class="absolute inset-0" style="background: radial-gradient(circle at 50% 60%, transparent 30%, rgba(5,10,24,0.55) 95%);"></div>
+      <!-- Grain -->
+      <div class="absolute inset-0 mix-blend-overlay opacity-20" style="background-image: url(&quot;data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>&quot;);"></div>
+    </div>
+
+    <!-- Editorial frame markers -->
+    <div aria-hidden="true" class="absolute top-28 left-6 lg:left-10 hidden md:block num-marker text-xs text-[var(--color-gold-300)]/70 [writing-mode:vertical-rl] tracking-[0.3em]">
+      LATITUDE 51.2593° N · LONGITUDE 7.4675° E
+    </div>
+    <div aria-hidden="true" class="absolute top-28 right-6 lg:right-10 hidden md:block num-marker text-xs text-[var(--color-gold-300)]/70 [writing-mode:vertical-rl] tracking-[0.3em]">
+      AUSGABE Nr. CXXXIV · MMXXVI
+    </div>
+
+    <!-- Content -->
+    <div class="container-page relative h-full flex items-end pb-20 lg:pb-32">
+      <div class="grid grid-cols-12 gap-x-6 w-full items-end">
+        <!-- Headline column -->
+        <div class="col-span-12 lg:col-span-9">
+          <p class="eyebrow text-[var(--color-gold-300)] anim-fade">
+            <span class="num-marker">— Anno MDCCCXC</span>  ·  Familienhaus in vierter Generation
+          </p>
+          <h1 class="display-1 mt-6 max-w-[18ch] text-[var(--color-paper)] anim-rise delay-200">
+            Ein Haus,
+            <span class="swash-italic text-[var(--color-gold-400)]">in&nbsp;dem&nbsp;</span>
+            sich Tradition
+            <br/>
+            und Moderne
+            <span class="swash-italic text-[var(--color-gold-400)]">begegnen.</span>
+          </h1>
+          <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 anim-rise delay-500">
+            <Star count={3} />
+            <span class="num-marker text-[var(--color-paper)]/70 text-xs tracking-[0.25em]">DEHOGA · DREI STERNE SUPERIOR</span>
+          </div>
+          <p class="mt-8 max-w-xl text-lg leading-relaxed text-[var(--color-paper)]/80 anim-rise delay-700">
+            Siebzehn Zimmer in Breckerfeld, am Rand des Sauerlands. Wir empfangen Sie persönlich,
+            kennen den Bäcker drei Häuser weiter und wissen, welche Talsperre morgens am stillsten ist.
+          </p>
+        </div>
+
+        <!-- Side card -->
+        <div class="col-span-12 lg:col-span-3 lg:pl-6 anim-rise delay-900">
+          <div class="relative rounded-sm border border-[var(--color-gold-500)]/45 bg-[var(--color-ink-900)]/55 backdrop-blur-md p-6 overflow-hidden">
+            <span aria-hidden="true" class="absolute -top-px -right-px num-marker text-[10px] tracking-[0.18em] bg-[var(--color-gold-500)] text-[var(--color-ink-900)] px-2.5 py-1 font-semibold">
+              BESTPREIS
+            </span>
+            <p class="eyebrow text-[var(--color-gold-300)] mt-2">Direkt online buchen</p>
+            <p class="mt-3 font-display text-4xl leading-none text-[var(--color-paper)]">
+              <span class="num-marker">−{site.booking.directDiscount}</span>
+              <span class="text-2xl align-baseline">€</span>
+              <span class="block text-sm font-sans text-[var(--color-paper)]/65 mt-1">pro Nacht ggü. Portalen</span>
+            </p>
+            <p class="mt-4 text-xs text-[var(--color-paper)]/70 leading-relaxed">
+              Buchen Sie hier auf der Seite — Sie sparen die Portalprovision,
+              wir sparen Telefonzeit. Wochenende Fr–So:
+              zusätzlich <span class="num-marker text-[var(--color-gold-300)]">−{site.booking.weekendDiscount}&nbsp;€</span>.
+            </p>
+            <a
+              href={site.booking.directUrl}
+              target="_blank"
+              rel="noopener"
+              class="mt-5 group flex items-center justify-between gap-2 rounded-full bg-[var(--color-gold-500)] px-4 py-3 text-[var(--color-ink-900)] hover:bg-[var(--color-gold-400)] transition-colors"
+            >
+              <span class="font-medium tracking-wide">Verfügbarkeit prüfen</span>
+              <span class="font-display group-hover:translate-x-0.5 transition-transform">→</span>
+            </a>
+            <p class="mt-3 text-[10px] text-[var(--color-paper)]/45 num-marker tracking-[0.18em] text-center">
+              ÜBER VIATO · SOFORT BESTÄTIGT
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--color-paper)]/60 anim-shimmer">
+      <span class="num-marker text-[10px] tracking-[0.3em]">SCROLL</span>
+      <span class="h-10 w-px bg-[var(--color-paper)]/40"></span>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--           ROLLING TICKER                      -->
+  <!-- ============================================ -->
+  <section class="bg-[var(--color-ink-900)] text-[var(--color-gold-300)] overflow-hidden border-y border-[var(--color-gold-700)]/25">
+    <div class="anim-ticker flex whitespace-nowrap py-5">
+      {Array.from({ length: 2 }).map(() => (
+        <ul class="flex items-center gap-12 pr-12 text-sm shrink-0">
+          <li class="font-display text-xl">Zimmer mit Garten­blick</li>
+          <li class="opacity-50">✦</li>
+          <li class="num-marker tracking-[0.2em] text-xs">FRISCHES FRÜHSTÜCK · OFFENER KAMIN</li>
+          <li class="opacity-50">✦</li>
+          <li class="font-display text-xl swash-italic">vier Generationen</li>
+          <li class="opacity-50">✦</li>
+          <li class="num-marker tracking-[0.2em] text-xs">E-AUTO LADESTATION · AM HAUS</li>
+          <li class="opacity-50">✦</li>
+          <li class="font-display text-xl">Jakobsweg an der Tür</li>
+          <li class="opacity-50">✦</li>
+          <li class="num-marker tracking-[0.2em] text-xs">FREIES WLAN · ÜBERALL</li>
+          <li class="opacity-50">✦</li>
+        </ul>
+      ))}
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--           STORY ·  hand-set                  -->
+  <!-- ============================================ -->
+  <section class="relative py-24 lg:py-36">
+    <div class="container-page">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-12 items-start">
+        <!-- Left: image collage -->
+        <div class="col-span-12 lg:col-span-5 relative">
+          <div class="relative aspect-[3/4] rounded-sm overflow-hidden">
+            <img src={asset("/images/exterior/goldregen.jpg")} alt="Hotel Böving mit blühendem Goldregen" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="absolute -bottom-12 -right-6 w-2/3 aspect-[4/5] rounded-sm overflow-hidden shadow-[0_30px_60px_-30px_rgba(8,19,42,0.45)] border-8 border-[var(--color-paper)] hidden md:block">
+            <img src={asset("/images/decor/decor-sextant.jpg")} alt="Sextant und Teleskop im Hotelflur" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <p class="absolute -bottom-2 -left-3 swash-italic text-[var(--color-gold-700)] text-2xl rotate-[-4deg] hidden lg:block">
+            <span class="opacity-70">— der Goldregen, Mai</span>
+          </p>
+        </div>
+
+        <!-- Right: text -->
+        <div class="col-span-12 lg:col-span-6 lg:col-start-7 lg:pl-12">
+          <SectionLabel num="I" title="Das Haus" />
+          <h2 class="display-2 mt-6">
+            Seit dem Jahr
+            <span class="swash-italic text-[var(--color-gold-700)]">eintausendachthundert­neunzig</span>
+            stehen wir hier.
+          </h2>
+
+          <div class="mt-8 grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <p class="num-marker text-[var(--color-gold-700)]">— 1727 · 1835</p>
+              <p class="mt-1 text-[var(--color-ink-700)]/80">zwei Stadtbrände überstanden</p>
+            </div>
+            <div>
+              <p class="num-marker text-[var(--color-gold-700)]">— 1890</p>
+              <p class="mt-1 text-[var(--color-ink-700)]/80">Eröffnung als Hotel</p>
+            </div>
+            <div>
+              <p class="num-marker text-[var(--color-gold-700)]">— IV. Generation</p>
+              <p class="mt-1 text-[var(--color-ink-700)]/80">heute geführt von Familie Böving</p>
+            </div>
+            <div>
+              <p class="num-marker text-[var(--color-gold-700)]">— XVII Zimmer</p>
+              <p class="mt-1 text-[var(--color-ink-700)]/80">XXVII Betten · ein Apartment</p>
+            </div>
+          </div>
+
+          <div class="mt-10 prose prose-lg text-[var(--color-ink-700)]/85">
+            <p class="text-xl leading-relaxed">
+              Wir sind <em class="swash-italic text-[var(--color-gold-700)]">garni</em> — kein Restaurant,
+              dafür ein Frühstück, das schmeckt, weil es selbst gemacht ist.
+              Die Mauern sind älter als jeder von uns, das WLAN trotzdem schnell.
+              Beides darf gleichzeitig wahr sein.
+            </p>
+            <p class="mt-4">
+              Wer hier ankommt, parkt vor der Tür, lädt das Auto an der Wand
+              und fährt morgens das Rad aus der Garage in Richtung Glörtalsperre.
+              Den Schlüssel öffnen Sie per Transponder — auch um halb zwei,
+              wenn die Sterne über Breckerfeld besonders deutlich stehen.
+            </p>
+          </div>
+
+          <a href={asset("/zimmer")} class="mt-12 group inline-flex items-center gap-3 text-[var(--color-ink-900)]">
+            <span class="num-marker text-xs tracking-[0.25em]">DIE ZIMMER ANSEHEN</span>
+            <span class="h-px w-12 bg-[var(--color-ink-900)] transition-all duration-500 group-hover:w-20"></span>
+            <span class="font-display">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--           ROOMS · gallery                    -->
+  <!-- ============================================ -->
+  <section class="relative py-24 lg:py-32 bg-[var(--color-paper-2)]/45">
+    <div class="container-page">
+      <div class="flex items-end justify-between gap-8 mb-14">
+        <div class="max-w-xl">
+          <SectionLabel num="II" title="Die Zimmer" />
+          <h2 class="display-2 mt-6">
+            Vier Wohn­formen,
+            <span class="swash-italic text-[var(--color-gold-700)]">eine Idee.</span>
+          </h2>
+          <p class="mt-6 text-[var(--color-ink-700)]/80">
+            Hell, warm, nicht überfrachtet. Jedes Zimmer hat einen Schreibtisch — manche einen Goldregen vorm Fenster.
+          </p>
+        </div>
+        <a href={asset("/zimmer")} class="hidden md:inline-flex items-center gap-3 text-sm">
+          <span class="num-marker text-xs tracking-[0.2em]">ALLE ZIMMER</span>
+          <span class="h-px w-10 bg-[var(--color-ink-900)]"></span>
+        </a>
+      </div>
+
+      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-5 gap-y-12">
+        {rooms.map((room, i) => {
+          const colSpans = ["lg:col-span-7","lg:col-span-5","lg:col-span-5","lg:col-span-7"];
+          const aspects = ["aspect-[5/4]","aspect-[3/4]","aspect-[4/5]","aspect-[5/4]"];
+          return (
+            <li class:list={["group", colSpans[i] || "lg:col-span-6"]}>
+              <a href={`${asset("/zimmer")}#${room.slug}`} class="block">
+                <figure class:list={["relative overflow-hidden rounded-sm bg-[var(--color-ink-900)]", aspects[i]]}>
+                  <img
+                    src={asset(room.images[0])}
+                    alt={room.name}
+                    class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-ink-900)]/55 via-transparent to-transparent"></div>
+                  <figcaption class="absolute inset-x-5 bottom-5 flex items-end justify-between text-[var(--color-paper)]">
+                    <div>
+                      <p class="num-marker text-xs text-[var(--color-gold-300)] tracking-[0.2em]">N° {room.no} · {room.type}</p>
+                      <p class="display-3 mt-1 leading-none">{room.name}</p>
+                    </div>
+                    <span class="num-marker text-[10px] tracking-[0.2em] text-[var(--color-paper)]/75 self-end mb-1">
+                      ab {room.priceFrom} €
+                    </span>
+                  </figcaption>
+                </figure>
+                <div class="mt-4 flex justify-between items-baseline">
+                  <p class="text-[var(--color-ink-700)]/80">{room.short}</p>
+                  <span class="num-marker text-[10px] text-[var(--color-ink-700)]/50 tracking-[0.2em]">{room.sizeSqm} m²</span>
+                </div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--           BREAKFAST · big editorial          -->
+  <!-- ============================================ -->
+  <section class="relative bg-[var(--color-ink-900)] text-[var(--color-paper)] overflow-hidden">
+    <div class="container-page py-24 lg:py-32 grid grid-cols-12 gap-x-6 gap-y-16 items-center">
+      <div class="col-span-12 lg:col-span-7 order-2 lg:order-1 relative">
+        <figure class="relative aspect-[5/4] rounded-sm overflow-hidden">
+          <img src={asset("/images/breakfast/breakfast-room.jpg")} alt="Frühstücksraum mit Holzbalken und Kamin" class="w-full h-full object-cover" loading="lazy" />
+          <div class="absolute inset-0 ring-1 ring-inset ring-[var(--color-gold-500)]/20"></div>
+        </figure>
+        <div class="absolute -top-10 -right-6 hidden lg:block w-44 aspect-square rounded-full overflow-hidden shadow-2xl border-4 border-[var(--color-paper)]">
+          <img src={asset("/images/breakfast/buffet.jpg")} alt="Frühstücksbuffet" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <p class="num-marker text-xs text-[var(--color-gold-300)]/70 mt-4 tracking-[0.25em]">— FIG. III · DER FRÜHSTÜCKSRAUM</p>
+      </div>
+
+      <div class="col-span-12 lg:col-span-5 order-1 lg:order-2">
+        <SectionLabel num="III" title="Frühstück" class="text-[var(--color-gold-300)]" />
+        <h2 class="display-2 mt-6 text-[var(--color-paper)]">
+          Holz, Kupfer,
+          <span class="swash-italic text-[var(--color-gold-400)]">offener&nbsp;Kamin.</span>
+        </h2>
+        <p class="mt-6 text-[var(--color-paper)]/80 text-lg leading-relaxed">
+          Unser Frühstücks­raum ist die Seele des Hauses. Holzbalken an der Decke, Kupfer­pfannen
+          überm offenen Kamin, viel Tageslicht. Brot vom Bäcker drei Häuser weiter.
+          Eier nach Wunsch.
+        </p>
+
+        <dl class="mt-10 space-y-5 text-[var(--color-paper)]/80">
+          <div class="flex justify-between items-baseline gap-4 border-b border-[var(--color-paper)]/10 pb-3">
+            <dt class="text-sm">Dienstag bis Freitag</dt>
+            <dd class="num-marker text-[var(--color-gold-300)]">06:30 – 09:00</dd>
+          </div>
+          <div class="flex justify-between items-baseline gap-4 border-b border-[var(--color-paper)]/10 pb-3">
+            <dt class="text-sm">Samstag · Sonntag</dt>
+            <dd class="num-marker text-[var(--color-gold-300)]">08:00 – 10:00</dd>
+          </div>
+          <div class="flex justify-between items-baseline gap-4">
+            <dt class="text-sm">Montag</dt>
+            <dd class="swash-italic text-[var(--color-gold-300)]/80">— Ruhetag —</dd>
+          </div>
+        </dl>
+
+        <a href={asset("/fruehstueck")} class="mt-12 inline-flex items-center gap-3 text-[var(--color-gold-300)] group">
+          <span class="num-marker text-xs tracking-[0.25em]">MEHR ZUM FRÜHSTÜCK</span>
+          <span class="h-px w-12 bg-[var(--color-gold-500)] transition-all duration-500 group-hover:w-20"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--           AMENITIES                           -->
+  <!-- ============================================ -->
+  <section class="py-24 lg:py-32 bg-[var(--color-paper)]">
+    <div class="container-page">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-10">
+        <div class="col-span-12 lg:col-span-4">
+          <SectionLabel num="IV" title="Selbst­verständlich" />
+          <h2 class="display-2 mt-6">
+            Was zum<br/>
+            <span class="swash-italic text-[var(--color-gold-700)]">Haus dazugehört.</span>
+          </h2>
+          <p class="mt-6 text-[var(--color-ink-700)]/75">
+            Die Dinge, für die anderswo extra abgerechnet wird.
+            Bei uns sind sie eingerechnet.
+          </p>
+        </div>
+
+        <ul class="col-span-12 lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-y-2 lg:gap-y-3 self-end">
+          {amenities.map((a, i) => (
+            <li class="group flex items-baseline gap-4 py-4 border-t border-[var(--color-ink-700)]/15">
+              <span class="num-marker text-xs text-[var(--color-gold-700)]">— {String(i+1).padStart(2,"0")}</span>
+              <div class="flex-1">
+                <p class="font-display text-2xl tracking-tight">{a.label}</p>
+                <p class="text-sm text-[var(--color-ink-700)]/65 mt-0.5">{a.hint}</p>
+              </div>
+              <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--color-gold-700)]">✦</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--           SURROUNDINGS                        -->
+  <!-- ============================================ -->
+  <section class="relative py-24 lg:py-32 bg-[var(--color-paper-2)]/55 overflow-hidden">
+    <div aria-hidden="true" class="absolute inset-y-0 right-0 w-1/2 bg-[var(--color-paper-3)]/30 -skew-x-6 translate-x-32 hidden md:block"></div>
+
+    <div class="container-page relative">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-12">
+        <div class="col-span-12 lg:col-span-5">
+          <SectionLabel num="V" title="Umgebung" />
+          <h2 class="display-2 mt-6">
+            Vor der Tür:<br/>
+            <span class="swash-italic text-[var(--color-gold-700)]">das halbe Sauerland.</span>
+          </h2>
+          <p class="mt-6 max-w-md text-[var(--color-ink-700)]/80">
+            Breckerfeld ist anerkannter Luftkurort, älter als sein Stadtrecht von 1396.
+            Wir liegen direkt am Jakobsweg, vier Talsperren in Schnellweite,
+            Restaurants in Gehweite.
+          </p>
+
+          <div class="mt-12 relative aspect-[4/3] overflow-hidden rounded-sm border border-[var(--color-ink-700)]/10">
+            <img src={asset("/images/location/karte.jpg")} alt="Karte Breckerfeld mit Hotel Böving" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-[var(--color-paper-2)]/20 mix-blend-multiply"></div>
+          </div>
+        </div>
+
+        <ul class="col-span-12 lg:col-span-7 lg:pl-10 self-start">
+          {localPois.map((poi, i) => (
+            <li class="group grid grid-cols-12 gap-4 py-5 border-t border-[var(--color-ink-700)]/15 last:border-b">
+              <span class="col-span-2 num-marker text-xs text-[var(--color-gold-700)] pt-1">{String(i+1).padStart(2,"0")} —</span>
+              <div class="col-span-7">
+                <p class="font-display text-2xl">{poi.name}</p>
+                <p class="text-sm text-[var(--color-ink-700)]/70 mt-1">{poi.note}</p>
+              </div>
+              <span class="col-span-3 num-marker text-xs text-[var(--color-ink-700)]/70 self-center text-right tracking-wider">
+                {poi.distance}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--      DIRECT BOOKING ·  Portal vs. Direct      -->
+  <!-- ============================================ -->
+  <section class="relative bg-[var(--color-ink-900)] text-[var(--color-paper)] overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={asset("/images/exterior/garden-view.jpg")} alt="" class="w-full h-full object-cover opacity-15" loading="lazy" aria-hidden="true" />
+      <div class="absolute inset-0 bg-gradient-to-b from-[var(--color-ink-900)]/95 via-[var(--color-ink-900)]/85 to-[var(--color-ink-900)]"></div>
+    </div>
+
+    <div class="container-page relative py-24 lg:py-36">
+      <SectionLabel num="VI" title="Direkt buchen" class="text-[var(--color-gold-300)]" />
+      <h2 class="display-1 mt-8 max-w-[16ch] text-[var(--color-paper)]">
+        Hier&nbsp;buchen ist
+        <span class="swash-italic text-[var(--color-gold-400)]">günstiger.</span>
+        <br/>Punkt.
+      </h2>
+      <p class="mt-8 text-lg text-[var(--color-paper)]/75 max-w-2xl leading-relaxed">
+        Wenn Sie über uns buchen, entfällt die Portal­provision —
+        wir geben sie 1:1 an Sie weiter. Keine Hotline, keine Warte­schleifen,
+        keine Anrufe nötig: <strong class="text-[var(--color-paper)] font-medium">in zwei Minuten gebucht und bestätigt.</strong>
+      </p>
+
+      <!-- Comparison cards -->
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Portal -->
+        <div class="relative rounded-sm border border-[var(--color-paper)]/15 bg-[var(--color-paper)]/[0.03] p-7 lg:p-8">
+          <div class="flex items-center justify-between">
+            <p class="num-marker text-[10px] text-[var(--color-paper)]/55 tracking-[0.25em]">— OPTION A</p>
+            <span class="num-marker text-[10px] text-[var(--color-paper)]/40 tracking-[0.18em]">PORTAL</span>
+          </div>
+          <p class="font-display text-3xl text-[var(--color-paper)]/65 mt-6 line-through decoration-[var(--color-paper)]/40 decoration-1">
+            booking.com · expedia · hrs
+          </p>
+          <p class="mt-6 font-display text-6xl text-[var(--color-paper)]/65 line-through decoration-[var(--color-paper)]/40 decoration-2">
+            <span class="num-marker">109</span><span class="text-3xl align-baseline">&nbsp;€</span>
+            <span class="text-base font-sans align-baseline ml-1">/ Nacht</span>
+          </p>
+          <ul class="mt-8 space-y-3 text-sm text-[var(--color-paper)]/55">
+            <li class="flex items-baseline gap-2">— Portalprovision aufgeschlagen</li>
+            <li class="flex items-baseline gap-2">— Anonyme Buchungs­bestätigung</li>
+            <li class="flex items-baseline gap-2">— Stornofrist oft strenger</li>
+            <li class="flex items-baseline gap-2">— Keine direkte Absprache mit dem Haus</li>
+          </ul>
+        </div>
+
+        <!-- Direct -->
+        <div class="relative rounded-sm border border-[var(--color-gold-500)] bg-[var(--color-gold-500)]/[0.06] p-7 lg:p-8 ring-2 ring-[var(--color-gold-500)]/35 ring-offset-4 ring-offset-[var(--color-ink-900)]">
+          <span aria-hidden="true" class="absolute -top-3 left-7 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-gold-500)] px-3 py-1 text-[10px] font-semibold tracking-[0.18em] text-[var(--color-ink-900)] num-marker">
+            ✦ EMPFOHLEN
+          </span>
+          <div class="flex items-center justify-between">
+            <p class="num-marker text-[10px] text-[var(--color-gold-300)] tracking-[0.25em]">— OPTION B</p>
+            <span class="num-marker text-[10px] text-[var(--color-gold-300)] tracking-[0.18em]">DIREKT · ÜBER VIATO</span>
+          </div>
+          <p class="font-display text-3xl text-[var(--color-paper)] mt-6">
+            <span class="swash-italic text-[var(--color-gold-300)]">boeving.de</span>
+          </p>
+          <p class="mt-6 font-display text-6xl text-[var(--color-paper)]">
+            <span class="num-marker">99</span><span class="text-3xl align-baseline">&nbsp;€</span>
+            <span class="text-base font-sans align-baseline ml-1 text-[var(--color-paper)]/70">/ Nacht</span>
+          </p>
+          <p class="mt-2 num-marker text-sm text-[var(--color-gold-300)]">
+            = −{site.booking.directDiscount}&nbsp;€ pro Nacht ggü. Portal
+          </p>
+          <ul class="mt-8 space-y-3 text-sm text-[var(--color-paper)]/85">
+            <li class="flex items-baseline gap-2 text-[var(--color-gold-300)]">+ Bestpreis­garantie</li>
+            <li class="flex items-baseline gap-2 text-[var(--color-gold-300)]">+ Sofortige Bestätigung</li>
+            <li class="flex items-baseline gap-2 text-[var(--color-gold-300)]">+ Kostenlose Stornierung bis 18&nbsp;Uhr Anreisetag</li>
+            <li class="flex items-baseline gap-2 text-[var(--color-gold-300)]">+ Wochenende Fr–So: zusätzlich −{site.booking.weekendDiscount}&nbsp;€</li>
+          </ul>
+
+          <BookButton
+            class="mt-10 w-full justify-between text-base"
+            label="Jetzt direkt buchen"
+            showSavings={false}
+          />
+        </div>
+      </div>
+
+      <!-- Tertiary fallback -->
+      <p class="mt-12 text-sm text-[var(--color-paper)]/55 max-w-2xl">
+        Geht online wirklich nichts? — Eine Mail an
+        <a href={`mailto:${site.contact.email}`} class="underline hover:text-[var(--color-gold-300)] transition-colors">{site.contact.email}</a> tut's auch.
+        Telefon nur, wenn's brennt: <span class="num-marker">{site.contact.phone}</span> (Mo–Sa, 16–20&nbsp;Uhr).
+      </p>
+    </div>
+  </section>
+
+</Layout>

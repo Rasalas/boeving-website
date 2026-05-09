@@ -1,0 +1,131 @@
+export const site = {
+  name: "Hotel Böving",
+  tagline: "garni",
+  founded: 1890,
+  generations: 4,
+  stars: 3,
+  classification: "DEHOGA Drei-Sterne-Superior",
+  rooms: 17,
+  beds: 27,
+  motto: "Tradition und Moderne",
+  city: "Breckerfeld",
+  region: "Sauerland",
+  address: {
+    street: "Frankfurter Straße 45",
+    zip: "58339",
+    city: "Breckerfeld",
+    country: "Deutschland",
+  },
+  contact: {
+    phone: "+49 2338 1555",
+    phoneRaw: "+492338 1555",
+    fax: "+49 2338 1501",
+    email: "info@boeving.de",
+  },
+  hours: {
+    reception: "Mo–Sa · 16:00 – 20:00",
+    breakfastWeek: "Di – Fr · 06:30 – 09:00",
+    breakfastWeekend: "Sa & So · 08:00 – 10:00",
+    breakfastClosed: "Montags ohne Frühstück",
+    arrival: "16:00 – 20:00",
+    departure: "bis 10:30",
+    sundayNote: "Sonntags keine Anreise",
+  },
+  booking: {
+    directDiscount: 10,
+    weekendDiscount: 25,
+    // TODO: tatsächlichen Viato-Direktbuchungs-Link einsetzen.
+    // Platzhalter — bitte mit dem realen Link aus dem Viato-Backend ersetzen.
+    directUrl: "https://www.viato.de/booking/hotel-boeving",
+    provider: "Viato",
+  },
+  geo: {
+    lat: 51.25926,
+    lng: 7.46751,
+  },
+};
+
+export const nav = [
+  { href: "/",          label: "Haus",       num: "I"   },
+  { href: "/zimmer",    label: "Zimmer",     num: "II"  },
+  { href: "/fruehstueck", label: "Frühstück", num: "III" },
+  { href: "/umgebung",  label: "Umgebung",   num: "IV"  },
+  { href: "/kontakt",   label: "Kontakt",    num: "V"   },
+];
+
+export const rooms = [
+  {
+    slug: "doppelzimmer-komfort",
+    no: "01",
+    type: "Komfort",
+    name: "Doppelzimmer",
+    short: "Großzügig, mit Garten- oder Straßenblick.",
+    long: "Hell, ruhig und flexibel — als Doppel oder zwei zusammengeschobene Einzelbetten. Schreibtisch, Wandfernseher, Kühlschrank, freies Wi‑Fi und das eigene Bad mit ebenerdiger Dusche.",
+    sleeps: 2,
+    sizeSqm: 22,
+    bedConfig: "1 × Doppelbett (180 × 200 cm) oder 2 × Einzelbett",
+    images: ["/images/rooms/double-15.jpg", "/images/rooms/double-14.jpg"],
+    amenities: ["Garten- oder Straßenblick", "Schreibtisch", "Wandfernseher", "Kühlschrank", "Bad mit Dusche", "Freies Wi‑Fi"],
+    priceFrom: 99,
+  },
+  {
+    slug: "twinzimmer-dachgeschoss",
+    no: "02",
+    type: "Komfort",
+    name: "Twin im Dachgeschoss",
+    short: "Schräge Decken, Holzbalken, Sterne durchs Dachfenster.",
+    long: "Zwei Einzelbetten unter Dachschräge, ein markanter alter Holzbalken — und durchs Velux ein Stück Sauerländer Himmel. Schreibtisch und Bad mit Dusche.",
+    sleeps: 2,
+    sizeSqm: 24,
+    bedConfig: "2 × Einzelbett (90 × 200 cm)",
+    images: ["/images/rooms/twin-25.jpg", "/images/rooms/dachgeschoss.jpg"],
+    amenities: ["Dachfenster", "Schreibtisch", "Wandfernseher", "Kühlschrank", "Bad mit Dusche", "Freies Wi‑Fi"],
+    priceFrom: 109,
+  },
+  {
+    slug: "einzelzimmer-standard",
+    no: "03",
+    type: "Standard",
+    name: "Einzelzimmer",
+    short: "Klein, klar, alles drin.",
+    long: "Effizient gedacht für eine Nacht oder zwei — Einzelbett, Schreibtisch mit eigenem Stuhl, Wandfernseher, Bad mit Dusche, freies Wi‑Fi. Ohne Schnörkel, ohne Aufpreis.",
+    sleeps: 1,
+    sizeSqm: 14,
+    bedConfig: "1 × Einzelbett (90 × 200 cm)",
+    images: ["/images/rooms/single-1.jpg", "/images/rooms/single-2.jpg"],
+    amenities: ["Schreibtisch", "Wandfernseher", "Kühlschrank", "Bad mit Dusche", "Freies Wi‑Fi"],
+    priceFrom: 79,
+  },
+  {
+    slug: "apartment-suite",
+    no: "04",
+    type: "Suite",
+    name: "Apartment",
+    short: "Drei Einzelbetten, eigener Flur, eigene Bar­ecke.",
+    long: "Unsere größte Einheit: ein eigener Flur, Wohn­bereich mit Esstisch und Barhocker, Schlafraum mit drei Einzelbetten. Für Familien oder kleine Gruppen, die Raum brauchen.",
+    sleeps: 3,
+    sizeSqm: 38,
+    bedConfig: "3 × Einzelbett (je 90 × 200 cm)",
+    images: ["/images/rooms/apartment-living.jpg", "/images/rooms/apartment-flur.jpg", "/images/rooms/apartment-flur2.jpg"],
+    amenities: ["Eigener Flur", "Wohnbereich", "Esstisch", "Wandfernseher", "Kühlschrank", "Bad mit Dusche", "Freies Wi‑Fi"],
+    priceFrom: 139,
+  },
+];
+
+export const amenities = [
+  { label: "Freies Wi‑Fi",       hint: "im ganzen Haus",          icon: "wifi"   },
+  { label: "Kostenfreie Park­plätze", hint: "direkt am Haus",     icon: "park"   },
+  { label: "E‑Auto‑Lade­station",     hint: "an der Fassade",     icon: "plug"   },
+  { label: "Fahrrad­garage",         hint: "abschließbar",        icon: "bike"   },
+  { label: "Transponder­schließ­technik", hint: "rund um die Uhr Zutritt", icon: "key" },
+  { label: "Frühstücks­raum",        hint: "mit offenem Kamin",   icon: "fire"   },
+];
+
+export const localPois = [
+  { name: "Altstadt Breckerfeld", note: "Fachwerk, Jakobs­kirche, fünf Minuten zu Fuß", distance: "0,4 km" },
+  { name: "Glörtalsperre",          note: "Wandern, Wasserfläche, Sommerbäder",          distance: "8 km"   },
+  { name: "Heilenbecker Talsperre", note: "Stille Runden durch Mischwald",                distance: "5 km"   },
+  { name: "Ennepetalsperre",        note: "Aussichts­punkte und Damm­krone",              distance: "7 km"   },
+  { name: "Jakobsweg",              note: "Etappenstation des deutschen Camino",         distance: "an der Tür" },
+  { name: "Bahnhof Hagen Hbf",      note: "ICE‑Halt, Anschluss Köln/Berlin",             distance: "20 km"  },
+];

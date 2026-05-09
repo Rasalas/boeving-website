@@ -1,0 +1,11 @@
+---
+interface Props { count?: number; class?: string }
+const { count = 3, class: cls = "" } = Astro.props;
+---
+<span class:list={["star-mark", cls]} aria-label={`${count} Sterne`}>
+  {Array.from({ length: count }).map(() => (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2.5l2.7 6.4 6.9.6-5.2 4.5 1.6 6.7L12 16.9 6 20.7l1.6-6.7L2.4 9.5l6.9-.6L12 2.5z" fill="currentColor" />
+    </svg>
+  ))}
+</span>

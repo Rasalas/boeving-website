@@ -1,0 +1,176 @@
+---
+import { nav, site } from "~/data/site";
+import { asset } from "~/utils/asset";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const path = Astro.url.pathname.replace(base, "") || "/";
+const isHome = path === "/";
+---
+
+<header
+  class:list={[
+    "fixed inset-x-0 z-50 transition-[background,backdrop-filter,border-color,top] duration-500",
+    "border-b border-transparent",
+    isHome ? "data-home" : "bg-[var(--color-paper)]/85 backdrop-blur-md border-[var(--color-ink-700)]/10",
+  ]}
+  style="top: var(--notice-h, 0px);"
+  data-header
+>
+  <div class="container-page flex items-center justify-between gap-6 py-4 lg:py-5">
+    <a href={asset("/")} class="group inline-flex items-center gap-3 shrink-0" aria-label="Hotel Böving — Startseite">
+      <span class="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-gold-500)]/60 transition-transform duration-500 group-hover:rotate-[8deg]">
+        <span class="absolute inset-1 rounded-full bg-[var(--color-ink-700)]"></span>
+        <span class="relative font-display text-[var(--color-gold-300)] text-base leading-none">HB</span>
+      </span>
+      <span class="hidden sm:flex flex-col leading-none">
+        <span class="font-display text-[1.2rem] tracking-tight text-[var(--color-ink-900)] header-text">Hotel Böving</span>
+        <span class="swash-italic text-sm text-[var(--color-gold-700)] header-sub -mt-0.5">garni · seit 1890</span>
+      </span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-1" aria-label="Hauptnavigation">
+      {nav.map((item) => {
+        const active = item.href === "/" ? path === "/" : path.startsWith(item.href);
+        return (
+          <a
+            href={asset(item.href)}
+            class:list={[
+              "group relative inline-flex items-center gap-2 px-3 py-2 text-sm transition-colors",
+              "header-link",
+              active && "is-active",
+            ]}
+          >
+            <span class="num-marker text-[10px] opacity-60">{item.num}</span>
+            <span class="font-medium tracking-wide">{item.label}</span>
+            <span class="absolute inset-x-3 bottom-1.5 h-px origin-left scale-x-0 bg-current transition-transform duration-500 group-hover:scale-x-100 group-[.is-active]:scale-x-100"></span>
+          </a>
+        );
+      })}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <span class="hidden lg:inline-flex items-center gap-1.5 num-marker text-[10px] tracking-[0.2em] header-link opacity-70">
+        BESTPREIS · −{site.booking.directDiscount}&nbsp;€
+      </span>
+      <a
+        href={site.booking.directUrl}
+        target="_blank"
+        rel="noopener"
+        class="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[var(--color-gold-500)] px-4 py-2 text-sm text-[var(--color-ink-900)] transition-colors hover:bg-[var(--color-gold-400)]"
+      >
+        <span class="relative z-10 font-medium tracking-wide">Direkt buchen</span>
+        <svg class="relative z-10 w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M5 12h14M13 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <button
+        type="button"
+        class="md:hidden inline-flex h-10 w-10 items-center justify-center"
+        aria-label="Menü öffnen"
+        data-menu-toggle
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
+          <path d="M3 7h18M3 12h18M3 17h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div
+    class="md:hidden fixed inset-0 z-[60] hidden flex-col bg-[var(--color-ink-900)] text-[var(--color-paper)]"
+    data-mobile-menu
+  >
+    <div class="container-page flex items-center justify-between py-4">
+      <span class="font-display text-2xl">Hotel Böving</span>
+      <button type="button" class="h-10 w-10" aria-label="Menü schließen" data-menu-close>
+        <svg class="w-5 h-5 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
+          <path d="M5 5l14 14M19 5L5 19"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="container-page flex-1 flex flex-col justify-center gap-2">
+      {nav.map((item) => (
+        <a href={asset(item.href)} class="group flex items-baseline gap-4 py-3 border-b border-[var(--color-paper)]/10">
+          <span class="num-marker text-xs text-[var(--color-gold-400)]">{item.num}</span>
+          <span class="font-display text-4xl tracking-tight">{item.label}</span>
+          <span class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+        </a>
+      ))}
+    </nav>
+    <div class="container-page py-6 border-t border-[var(--color-paper)]/10 space-y-4">
+      <a
+        href={site.booking.directUrl}
+        target="_blank"
+        rel="noopener"
+        class="flex items-center justify-between gap-3 rounded-full bg-[var(--color-gold-500)] px-5 py-3.5 text-[var(--color-ink-900)]"
+      >
+        <span class="font-medium">Direkt buchen</span>
+        <span class="num-marker text-[10px] tracking-[0.2em]">−{site.booking.directDiscount}&nbsp;€/NACHT</span>
+      </a>
+      <p class="text-xs text-[var(--color-paper)]/65">
+        {site.address.street} · {site.address.zip} {site.address.city}
+        <br/>
+        <span class="text-[var(--color-paper)]/45">Telefon nur, wenn's online nicht klappt: <span class="num-marker text-[var(--color-paper)]/70">{site.contact.phone}</span></span>
+      </p>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Default header on non-home pages */
+  header[data-header] :global(.header-text)  { color: var(--color-ink-900); }
+  header[data-header] :global(.header-sub)   { color: var(--color-gold-700); }
+  header[data-header] :global(.header-link)  { color: var(--color-ink-700); }
+
+  /* Home: transparent over hero, pale text */
+  header[data-header].data-home {
+    background: transparent;
+    border-color: transparent;
+  }
+  header[data-header].data-home :global(.header-text)  { color: var(--color-bone); }
+  header[data-header].data-home :global(.header-sub)   { color: var(--color-gold-300); }
+  header[data-header].data-home :global(.header-link)  { color: var(--color-bone); }
+
+  /* When scrolled past hero, switch home header to opaque */
+  header[data-header][data-scrolled="true"] {
+    background: color-mix(in srgb, var(--color-paper) 92%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom-color: color-mix(in srgb, var(--color-ink-700) 12%, transparent);
+  }
+  header[data-header][data-scrolled="true"] :global(.header-text)  { color: var(--color-ink-900); }
+  header[data-header][data-scrolled="true"] :global(.header-sub)   { color: var(--color-gold-700); }
+  header[data-header][data-scrolled="true"] :global(.header-link)  { color: var(--color-ink-700); }
+
+  [data-mobile-menu][data-open="true"] { display: flex; }
+</style>
+
+<script>
+  // Sticky header colour swap
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  if (header) {
+    const onScroll = () => {
+      header.dataset.scrolled = String(window.scrollY > 80);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  // Mobile menu
+  const menu = document.querySelector<HTMLElement>("[data-mobile-menu]");
+  const open = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const close = document.querySelector<HTMLButtonElement>("[data-menu-close]");
+  open?.addEventListener("click", () => {
+    menu?.setAttribute("data-open", "true");
+    document.body.style.overflow = "hidden";
+  });
+  close?.addEventListener("click", () => {
+    menu?.removeAttribute("data-open");
+    document.body.style.overflow = "";
+  });
+  menu?.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => {
+      menu.removeAttribute("data-open");
+      document.body.style.overflow = "";
+    }),
+  );
+</script>

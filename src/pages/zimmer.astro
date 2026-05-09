@@ -1,0 +1,204 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import SectionLabel from "~/components/SectionLabel.astro";
+import { rooms, site } from "~/data/site";
+import { asset } from "~/utils/asset";
+---
+
+<Layout
+  title="Zimmer · Hotel Böving Breckerfeld"
+  description="17 Zimmer im Hotel Böving — Doppel, Twin, Einzel und ein Apartment. Mit Schreibtisch, Bad, Wi-Fi und persönlichem Empfang."
+>
+
+  <!-- Hero -->
+  <section class="relative pt-36 lg:pt-44 pb-12 bg-[var(--color-paper)] overflow-hidden">
+    <div class="container-page">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-10">
+        <div class="col-span-12 lg:col-span-7">
+          <p class="eyebrow flex items-center gap-3 anim-fade">
+            <span class="num-marker text-[var(--color-gold-700)]">— II</span>
+            Die Zimmer
+          </p>
+          <h1 class="display-1 mt-6 anim-rise">
+            Siebzehn Zimmer.<br/>
+            <span class="swash-italic text-[var(--color-gold-700)]">Kein einziges identisch.</span>
+          </h1>
+          <p class="mt-8 max-w-xl text-lg leading-relaxed text-[var(--color-ink-700)]/80 anim-rise delay-300">
+            Jedes Zimmer hat seine Form: ein Erker hier, ein Dachfenster dort, ein Goldregen davor.
+            Was alle teilen: eigenes Bad, Schreibtisch, Wandfernseher, Kühlschrank — und schnelles Wi-Fi.
+          </p>
+        </div>
+
+        <div class="col-span-12 lg:col-span-5 lg:pl-8 self-end anim-rise delay-500">
+          <div class="relative rounded-sm bg-[var(--color-ink-700)] text-[var(--color-paper)] p-7 overflow-hidden">
+            <span aria-hidden="true" class="absolute -top-px -right-px num-marker text-[10px] tracking-[0.18em] bg-[var(--color-gold-500)] text-[var(--color-ink-900)] px-2.5 py-1 font-semibold">
+              BESTPREIS
+            </span>
+            <p class="eyebrow text-[var(--color-gold-300)] mt-2">Direkt online buchen</p>
+            <p class="mt-4 font-display text-2xl leading-snug">
+              Hier sparen Sie
+              <span class="swash-italic text-[var(--color-gold-300)] num-marker">−{site.booking.directDiscount}&nbsp;€</span>
+              pro Nacht.
+            </p>
+            <a
+              href={site.booking.directUrl}
+              target="_blank"
+              rel="noopener"
+              class="group mt-6 flex items-center justify-between gap-3 rounded-full bg-[var(--color-gold-500)] px-5 py-3 text-[var(--color-ink-900)] hover:bg-[var(--color-gold-400)] transition-colors"
+            >
+              <span class="font-medium">Verfügbarkeit prüfen</span>
+              <span class="font-display group-hover:translate-x-0.5 transition-transform">→</span>
+            </a>
+            <p class="mt-3 text-[10px] text-[var(--color-paper)]/55 num-marker tracking-[0.18em] text-center">
+              ÜBER VIATO · SOFORT BESTÄTIGT
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick filter chips -->
+  <section class="py-8 border-y border-[var(--color-ink-700)]/15 bg-[var(--color-paper-2)]/35">
+    <div class="container-page flex flex-wrap items-center gap-x-8 gap-y-3 text-sm">
+      <span class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.25em]">— TYPEN —</span>
+      {rooms.map((r) => (
+        <a href={`#${r.slug}`} class="group inline-flex items-baseline gap-2 text-[var(--color-ink-700)]/85 hover:text-[var(--color-gold-700)] transition-colors">
+          <span class="num-marker text-[10px]">{r.no}</span>
+          <span>{r.name}</span>
+          <span class="text-[var(--color-ink-700)]/40 num-marker">·</span>
+          <span class="num-marker text-[10px] line-through opacity-40">{r.priceFrom + 10}</span>
+          <span class="num-marker text-[10px] text-[var(--color-gold-700)]">{r.priceFrom}&nbsp;€</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Rooms — alternating long-form -->
+  {rooms.map((room, i) => {
+    const flip = i % 2 === 1;
+    return (
+      <section id={room.slug} class:list={["py-24 lg:py-32 relative", i % 2 === 1 ? "bg-[var(--color-paper-2)]/40" : "bg-[var(--color-paper)]"]}>
+        <div class="container-page">
+          <div class="grid grid-cols-12 gap-x-6 gap-y-10 items-center">
+            <!-- Image stack -->
+            <div class:list={["col-span-12 lg:col-span-7 relative", flip ? "lg:order-2" : ""]}>
+              <figure class="relative aspect-[5/4] overflow-hidden rounded-sm bg-[var(--color-ink-900)]">
+                <img src={asset(room.images[0])} alt={`${room.name} — Hauptansicht`} class="w-full h-full object-cover" loading="lazy" />
+              </figure>
+              {room.images[1] && (
+                <figure class:list={[
+                  "absolute w-1/2 aspect-[3/4] overflow-hidden rounded-sm border-4 border-[var(--color-paper)] shadow-[0_30px_60px_-30px_rgba(8,19,42,0.5)] hidden md:block",
+                  flip ? "-bottom-12 -left-6" : "-bottom-12 -right-6"
+                ]}>
+                  <img src={asset(room.images[1])} alt={`${room.name} — Detail`} class="w-full h-full object-cover" loading="lazy" />
+                </figure>
+              )}
+              <p class:list={[
+                "num-marker text-xs text-[var(--color-ink-700)]/55 mt-4 tracking-[0.25em]",
+                flip ? "text-right" : ""
+              ]}>
+                — FIG. {String(i+1).padStart(2,"0")} · {room.name.toUpperCase()}
+              </p>
+            </div>
+
+            <!-- Text -->
+            <div class:list={["col-span-12 lg:col-span-5", flip ? "lg:order-1 lg:pr-12" : "lg:pl-12"]}>
+              <div class="flex items-center gap-3">
+                <span class="num-marker text-xs text-[var(--color-gold-700)]">N° {room.no}</span>
+                <span class="h-px w-12 bg-[var(--color-ink-700)]/25"></span>
+                <span class="eyebrow">{room.type}</span>
+              </div>
+              <h2 class="display-2 mt-5">{room.name}</h2>
+              <p class="swash-italic text-2xl text-[var(--color-gold-700)] mt-3">{room.short}</p>
+
+              <p class="mt-8 text-lg text-[var(--color-ink-700)]/85 leading-relaxed">{room.long}</p>
+
+              <dl class="mt-10 grid grid-cols-2 gap-x-4 gap-y-5">
+                <div>
+                  <dt class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— BELEGUNG</dt>
+                  <dd class="font-display text-2xl mt-1">bis zu {room.sleeps} {room.sleeps === 1 ? "Person" : "Personen"}</dd>
+                </div>
+                <div>
+                  <dt class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— GRÖSSE</dt>
+                  <dd class="font-display text-2xl mt-1">{room.sizeSqm} m²</dd>
+                </div>
+                <div class="col-span-2">
+                  <dt class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— BETTEN</dt>
+                  <dd class="text-base mt-1 text-[var(--color-ink-700)]/85">{room.bedConfig}</dd>
+                </div>
+              </dl>
+
+              <ul class="mt-8 flex flex-wrap gap-2">
+                {room.amenities.map((a) => (
+                  <li class="inline-flex px-3 py-1.5 rounded-full border border-[var(--color-ink-700)]/20 text-xs text-[var(--color-ink-700)]/80 bg-[var(--color-paper)]">
+                    {a}
+                  </li>
+                ))}
+              </ul>
+
+              <div class="mt-10 grid grid-cols-2 gap-x-4 gap-y-3 pt-6 border-t border-[var(--color-ink-700)]/15">
+                <div>
+                  <p class="num-marker text-[10px] text-[var(--color-ink-700)]/55 tracking-[0.2em]">— PORTAL</p>
+                  <p class="font-display text-2xl text-[var(--color-ink-700)]/55 mt-1 leading-none line-through decoration-[var(--color-ink-700)]/35">
+                    <span class="num-marker">{room.priceFrom + 10}</span>
+                    <span class="text-base align-baseline ml-1">€</span>
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— DIREKT · AB</p>
+                  <p class="display-3 mt-1 leading-none">
+                    <span class="num-marker">{room.priceFrom}</span>
+                    <span class="text-xl align-baseline ml-1">€</span>
+                  </p>
+                  <p class="num-marker text-[10px] text-[var(--color-gold-700)] mt-1">−{site.booking.directDiscount}&nbsp;€/NACHT</p>
+                </div>
+                <p class="col-span-2 text-xs text-[var(--color-ink-700)]/60">pro Nacht · inkl. Frühstück · Bestpreis­garantie</p>
+
+                <a
+                  href={site.booking.directUrl}
+                  target="_blank"
+                  rel="noopener"
+                  class="col-span-2 group flex items-center justify-between gap-3 rounded-full bg-[var(--color-gold-500)] px-5 py-3.5 text-[var(--color-ink-900)] hover:bg-[var(--color-gold-400)] transition-colors mt-2"
+                >
+                  <span class="text-sm font-medium">{room.name} direkt buchen</span>
+                  <span class="font-display group-hover:translate-x-0.5 transition-transform">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  <!-- House-keeping facts -->
+  <section class="py-24 lg:py-32 bg-[var(--color-ink-900)] text-[var(--color-paper)]">
+    <div class="container-page">
+      <SectionLabel num="III" title="Wichtig zu wissen" class="text-[var(--color-gold-300)]" />
+      <h2 class="display-2 mt-6 text-[var(--color-paper)] max-w-2xl">
+        Ankunft, Abreise,<br/>
+        <span class="swash-italic text-[var(--color-gold-400)]">und alles dazwischen.</span>
+      </h2>
+
+      <dl class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
+        <div class="border-t border-[var(--color-paper)]/15 pt-6">
+          <dt class="num-marker text-[10px] text-[var(--color-gold-300)] tracking-[0.2em]">— CHECK-IN</dt>
+          <dd class="display-3 mt-3 text-[var(--color-paper)]">{site.hours.arrival}</dd>
+          <p class="mt-3 text-[var(--color-paper)]/65 text-sm">{site.hours.sundayNote}.</p>
+        </div>
+        <div class="border-t border-[var(--color-paper)]/15 pt-6">
+          <dt class="num-marker text-[10px] text-[var(--color-gold-300)] tracking-[0.2em]">— CHECK-OUT</dt>
+          <dd class="display-3 mt-3 text-[var(--color-paper)]">{site.hours.departure}</dd>
+          <p class="mt-3 text-[var(--color-paper)]/65 text-sm">Späteres bitte am Vorabend ansprechen.</p>
+        </div>
+        <div class="border-t border-[var(--color-paper)]/15 pt-6">
+          <dt class="num-marker text-[10px] text-[var(--color-gold-300)] tracking-[0.2em]">— TRANSPONDER</dt>
+          <dd class="display-3 mt-3 text-[var(--color-paper)]">24/7</dd>
+          <p class="mt-3 text-[var(--color-paper)]/65 text-sm">Eigener Schlüssel — auch nachts kein Problem.</p>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+</Layout>

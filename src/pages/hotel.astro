@@ -1,0 +1,200 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import SectionLabel from "~/components/SectionLabel.astro";
+import Star from "~/components/Star.astro";
+import BookButton from "~/components/BookButton.astro";
+import { asset } from "~/utils/asset";
+
+const timeline = [
+  { year: "1727", roman: "MDCCXXVII", title: "Erster großer Stadtbrand", body: "Breckerfeld brennt zu großen Teilen nieder. Das Haus, das später Hotel Böving werden soll, wird neu errichtet." },
+  { year: "1835", roman: "MDCCCXXXV", title: "Zweiter Stadtbrand", body: "Die Stadt brennt erneut. Wieder wird gebaut — diesmal mit den Mauern, die heute noch stehen." },
+  { year: "1890", roman: "MDCCCXC", title: "Eröffnung als Hotel", body: "Familie Böving eröffnet ein Hotel garni in der Frankfurter Straße. Drei Zimmer, eigene Küche fürs Frühstück." },
+  { year: "1959", roman: "MCMLIX", title: "Erste große Renovierung", body: "Sanitäre Einrichtungen werden modernisiert. Das Haus erhält fließend warmes Wasser." },
+  { year: "2008", roman: "MMVIII", title: "Komplettsanierung der Zimmer", body: "Alle Zimmer mit eigenem Bad. Schreibtische, Wandfernseher, schnelles Internet." },
+  { year: "2020", roman: "MMXX", title: "E-Auto-Ladestation", body: "An der Außenwand entsteht eine Ladesäule. Die Mauern bleiben, die Technik kommt mit." },
+  { year: "Heute", roman: "—", title: "Vierte Generation", body: "Familie Böving führt das Haus heute in vierter Generation. 17 Zimmer, ein Apartment, ein Frühstück, das schmeckt." },
+];
+
+const credo = [
+  { word: "Klein", def: "Siebzehn Zimmer. Wir kennen Sie beim Namen." },
+  { word: "Garni", def: "Frühstück, kein Restaurant. Wir empfehlen den Bäcker drei Häuser weiter." },
+  { word: "Familie", def: "Vier Generationen. Vier Mal die gleiche Antwort: ja, gerne." },
+  { word: "Direkt", def: "Buchen Sie bei uns, nicht beim Portal. Beide Seiten sparen." },
+];
+---
+
+<Layout
+  title="Das Haus · Hotel Böving seit 1890"
+  description="Hotel Böving — vier Generationen Familienhotel in Breckerfeld. Geschichte, Philosophie, Drei-Sterne-Klassifizierung."
+>
+
+  <!-- Hero -->
+  <section class="relative pt-36 lg:pt-44 pb-16 lg:pb-24 bg-[var(--color-paper)] overflow-hidden">
+    <div aria-hidden="true" class="absolute -top-20 -right-32 w-[34rem] h-[34rem] rounded-full bg-[var(--color-gold-200)]/40 blur-3xl"></div>
+
+    <div class="container-page relative">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-12">
+        <div class="col-span-12 lg:col-span-8 relative">
+          <p class="eyebrow flex items-center gap-3 anim-fade">
+            <span class="num-marker text-[var(--color-gold-700)]">— I</span>
+            Das Haus
+          </p>
+          <h1 class="display-1 mt-6 anim-rise">
+            Vier Generationen.<br/>
+            <span class="swash-italic text-[var(--color-gold-700)]">Ein Schlüsselbund.</span>
+          </h1>
+          <div class="mt-8 flex items-center gap-6 anim-rise delay-200">
+            <Star count={3} />
+            <span class="num-marker text-xs text-[var(--color-ink-700)]/70 tracking-[0.2em]">DEHOGA · DREI STERNE SUPERIOR</span>
+          </div>
+          <p class="mt-10 max-w-2xl text-xl leading-relaxed text-[var(--color-ink-700)]/85 anim-rise delay-300">
+            Hotel Böving steht in Breckerfeld seit 1890. Davor stand an gleicher Stelle ein Haus,
+            das zwei Stadtbrände überlebte — den von 1727 und den von 1835. Wir mögen diese
+            <em class="swash-italic text-[var(--color-gold-700)]">Sturheit</em> der Mauern.
+          </p>
+        </div>
+
+        <div class="col-span-12 lg:col-span-4 lg:pl-6 self-end anim-rise delay-500">
+          <figure class="relative aspect-[3/4] overflow-hidden rounded-sm">
+            <img src={asset("/images/exterior/facade-front.jpg")} alt="Fassade Hotel Böving" class="w-full h-full object-cover" />
+          </figure>
+          <p class="num-marker text-xs text-[var(--color-ink-700)]/55 mt-3 tracking-[0.25em]">
+            FRANKFURTER STRASSE 45 · BRECKERFELD
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Numbers we live by -->
+  <section class="py-12 border-y border-[var(--color-ink-700)]/15 bg-[var(--color-paper-2)]/40">
+    <div class="container-page grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div>
+        <p class="num-marker text-xs text-[var(--color-gold-700)]">— EST.</p>
+        <p class="display-3 mt-2">1890</p>
+        <p class="text-sm text-[var(--color-ink-700)]/65 mt-1">{2026 - 1890} Jahre</p>
+      </div>
+      <div>
+        <p class="num-marker text-xs text-[var(--color-gold-700)]">— GENERATIONEN</p>
+        <p class="display-3 mt-2">IV</p>
+        <p class="text-sm text-[var(--color-ink-700)]/65 mt-1">vier · Familie Böving</p>
+      </div>
+      <div>
+        <p class="num-marker text-xs text-[var(--color-gold-700)]">— ZIMMER</p>
+        <p class="display-3 mt-2">17</p>
+        <p class="text-sm text-[var(--color-ink-700)]/65 mt-1">davon ein Apartment</p>
+      </div>
+      <div>
+        <p class="num-marker text-xs text-[var(--color-gold-700)]">— BETTEN</p>
+        <p class="display-3 mt-2">27</p>
+        <p class="text-sm text-[var(--color-ink-700)]/65 mt-1">flexibel kombinierbar</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credo -->
+  <section class="py-24 lg:py-32">
+    <div class="container-page">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-10">
+        <div class="col-span-12 lg:col-span-4">
+          <SectionLabel num="II" title="Credo" />
+          <h2 class="display-2 mt-6">
+            Vier Worte,
+            <span class="swash-italic text-[var(--color-gold-700)]">vier&nbsp;Versprechen.</span>
+          </h2>
+        </div>
+
+        <dl class="col-span-12 lg:col-span-8 grid grid-cols-1 gap-6 self-end">
+          {credo.map((c, i) => (
+            <div class="grid grid-cols-12 gap-4 py-6 border-t border-[var(--color-ink-700)]/15 first:border-t-0">
+              <dt class="col-span-12 md:col-span-4">
+                <p class="num-marker text-xs text-[var(--color-gold-700)]">— {String(i+1).padStart(2,"0")}</p>
+                <p class="display-3 mt-2">{c.word}</p>
+              </dt>
+              <dd class="col-span-12 md:col-span-8 text-lg text-[var(--color-ink-700)]/80 self-center leading-relaxed">
+                {c.def}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story long-form -->
+  <section class="relative py-24 lg:py-32 bg-[var(--color-ink-900)] text-[var(--color-paper)] overflow-hidden">
+    <div aria-hidden="true" class="absolute inset-0 opacity-15">
+      <img src={asset("/images/decor/decor-degen.jpg")} alt="" class="w-full h-full object-cover" />
+    </div>
+    <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-b from-[var(--color-ink-900)] via-[var(--color-ink-900)]/85 to-[var(--color-ink-900)]"></div>
+
+    <div class="container-page relative grid grid-cols-12 gap-x-6 gap-y-12">
+      <div class="col-span-12 lg:col-span-4">
+        <SectionLabel num="III" title="Geschichte" class="text-[var(--color-gold-300)]" />
+        <h2 class="display-2 mt-6 text-[var(--color-paper)]">
+          Eine Linie,<br/>
+          <span class="swash-italic text-[var(--color-gold-400)]">die nicht reißt.</span>
+        </h2>
+        <p class="mt-8 text-[var(--color-paper)]/75 leading-relaxed">
+          An den Wänden hängen Säbel und Sextanten — kleine Erinnerungen daran,
+          dass Breckerfeld einst Reisestation auf dem Weg in den Westen war.
+          Heute hängen sie nur noch dort, weil wir sie schön finden.
+        </p>
+      </div>
+
+      <ol class="col-span-12 lg:col-span-8 lg:pl-12 relative">
+        <span aria-hidden="true" class="absolute left-3 lg:left-2 top-2 bottom-2 w-px bg-[var(--color-gold-500)]/35"></span>
+        {timeline.map((e) => (
+          <li class="relative grid grid-cols-12 gap-4 pl-10 lg:pl-12 py-7 border-b border-[var(--color-paper)]/10 last:border-b-0">
+            <span aria-hidden="true" class="absolute left-2 lg:left-1 top-9 inline-block w-2.5 h-2.5 rounded-full bg-[var(--color-gold-500)] ring-4 ring-[var(--color-ink-900)]"></span>
+            <div class="col-span-12 md:col-span-3">
+              <p class="display-3 leading-none text-[var(--color-paper)]">{e.year}</p>
+              <p class="num-marker text-[10px] text-[var(--color-gold-300)]/70 mt-1 tracking-[0.2em]">{e.roman}</p>
+            </div>
+            <div class="col-span-12 md:col-span-9">
+              <p class="font-display text-2xl text-[var(--color-paper)]">{e.title}</p>
+              <p class="mt-2 text-[var(--color-paper)]/70 leading-relaxed">{e.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="py-24 lg:py-36 bg-[var(--color-paper)] relative overflow-hidden">
+    <div aria-hidden="true" class="container-page absolute inset-0 flex items-center justify-center pointer-events-none">
+      <p class="display-1 opacity-[0.04] text-[var(--color-ink-900)] whitespace-nowrap" style="font-size: clamp(8rem, 20vw, 18rem);">„</p>
+    </div>
+    <div class="container-page relative">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="eyebrow text-[var(--color-gold-700)]">— DAS HAUSWORT</p>
+        <blockquote class="display-2 mt-8 text-[var(--color-ink-900)]">
+          „Wir verkaufen keine Übernachtungen.<br/>
+          <span class="swash-italic text-[var(--color-gold-700)]">Wir vermieten Schlaf.</span>"
+        </blockquote>
+        <p class="mt-10 num-marker text-xs text-[var(--color-ink-700)]/60 tracking-[0.3em]">
+          — FAMILIE BÖVING · IV. GENERATION
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA strip -->
+  <section class="py-16 bg-[var(--color-gold-100)]/60 border-y border-[var(--color-gold-500)]/30">
+    <div class="container-page flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <p class="eyebrow text-[var(--color-gold-700)]">Nächster Schritt</p>
+        <p class="display-3 mt-3">Direkt online buchen — günstiger als jedes Portal.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <a href={asset("/zimmer")} class="inline-flex items-center gap-2 px-4 py-3.5 text-sm text-[var(--color-ink-900)] hover:text-[var(--color-gold-700)] transition-colors">
+          <span>Erst die Zimmer ansehen</span>
+          <span class="font-display">→</span>
+        </a>
+        <BookButton variant="primary" label="Direkt buchen" />
+      </div>
+    </div>
+  </section>
+
+</Layout>

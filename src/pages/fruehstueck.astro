@@ -1,0 +1,203 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import SectionLabel from "~/components/SectionLabel.astro";
+import BookButton from "~/components/BookButton.astro";
+import { asset } from "~/utils/asset";
+
+const buffet = [
+  { cat: "Brot & Brötchen",   items: ["Bauernbrot", "Roggenmisch", "Krustenbrötchen", "Mehrkorn", "Weizenbrötchen", "Croissants"] },
+  { cat: "Aufschnitt",        items: ["Schinken roh & gekocht", "Salami", "Mortadella", "Kasseler", "Bratenaufschnitt"] },
+  { cat: "Käse",              items: ["Brie", "Bergkäse", "Gouda jung & alt", "Camembert", "Frischkäse"] },
+  { cat: "Süß",               items: ["Marmeladen (5 Sorten)", "Honig", "Nuss-Nougat", "Joghurt", "Müsli & Cornflakes", "Quark"] },
+  { cat: "Frisch",            items: ["Eier — wie Sie mögen", "Rührei mit Schnittlauch", "Tomate & Gurke", "Paprika", "Frisches Obst"] },
+  { cat: "Heiß",              items: ["Kaffee & Espresso", "Cappuccino", "Schwarz-, Grün- und Kräutertees", "Heiße Schokolade"] },
+];
+---
+
+<Layout
+  title="Frühstück · Hotel Böving"
+  description="Hausgemachtes Frühstücksbuffet im historischen Frühstücksraum mit offenem Kamin. Brot vom Bäcker nebenan, Eier nach Wunsch."
+>
+
+  <!-- Hero -->
+  <section class="relative pt-36 lg:pt-44 pb-20 bg-[var(--color-paper)] overflow-hidden">
+    <div aria-hidden="true" class="absolute -top-24 -left-32 w-[34rem] h-[34rem] rounded-full bg-[var(--color-gold-200)]/55 blur-3xl"></div>
+
+    <div class="container-page relative">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-12 items-end">
+        <div class="col-span-12 lg:col-span-7">
+          <p class="eyebrow flex items-center gap-3 anim-fade">
+            <span class="num-marker text-[var(--color-gold-700)]">— III</span>
+            Frühstück
+          </p>
+          <h1 class="display-1 mt-6 anim-rise">
+            Eierfrage:<br/>
+            <span class="swash-italic text-[var(--color-gold-700)]">wie&nbsp;hätten&nbsp;Sie&apos;s</span> denn?
+          </h1>
+          <p class="mt-8 max-w-xl text-lg leading-relaxed text-[var(--color-ink-700)]/85 anim-rise delay-300">
+            Frühstück ist die wichtigste Mahlzeit des Tages. Bei uns auch die einzige.
+            Wir sind <em class="swash-italic text-[var(--color-gold-700)]">garni</em> —
+            das heißt: viel Brot, viel Käse, viel Zeit.
+          </p>
+        </div>
+        <div class="col-span-12 lg:col-span-5">
+          <p class="num-marker text-xs text-[var(--color-gold-700)] tracking-[0.25em] anim-fade delay-500">
+            FIG. I · DER FRÜHSTÜCKSRAUM
+          </p>
+          <figure class="relative mt-3 aspect-[5/4] overflow-hidden rounded-sm anim-rise delay-700">
+            <img src={asset("/images/breakfast/breakfast-room.jpg")} alt="Frühstücksraum mit Holzbalken und Kamin" class="w-full h-full object-cover" />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Times — big editorial -->
+  <section class="py-20 lg:py-28 bg-[var(--color-ink-900)] text-[var(--color-paper)]">
+    <div class="container-page">
+      <SectionLabel num="II" title="Wann & Wo" class="text-[var(--color-gold-300)]" />
+      <div class="mt-10 grid grid-cols-12 gap-x-6 gap-y-12">
+        <div class="col-span-12 lg:col-span-5">
+          <h2 class="display-2 text-[var(--color-paper)]">
+            Drei Zeiten,<br/>
+            <span class="swash-italic text-[var(--color-gold-400)]">ein Raum.</span>
+          </h2>
+          <p class="mt-6 max-w-md text-[var(--color-paper)]/75 leading-relaxed">
+            Im Erdgeschoss, gleich rechts vom Eingang. Holzdecke, Kamin, viel Tageslicht.
+            Wenn Sie zu zweit kommen, dann gerne ans Fenster — der Garten blüht ab April.
+          </p>
+        </div>
+
+        <dl class="col-span-12 lg:col-span-7 grid grid-cols-1 gap-y-2">
+          <div class="grid grid-cols-12 items-baseline gap-3 py-7 border-t border-[var(--color-paper)]/15">
+            <dt class="col-span-12 md:col-span-5">
+              <p class="font-display text-3xl text-[var(--color-paper)]">Dienstag bis Freitag</p>
+              <p class="text-sm text-[var(--color-paper)]/55 mt-1">Werktagsmodus, kompakt</p>
+            </dt>
+            <dd class="col-span-12 md:col-span-7 num-marker text-3xl text-[var(--color-gold-300)] md:text-right">
+              06:30 — 09:00
+            </dd>
+          </div>
+          <div class="grid grid-cols-12 items-baseline gap-3 py-7 border-t border-[var(--color-paper)]/15">
+            <dt class="col-span-12 md:col-span-5">
+              <p class="font-display text-3xl text-[var(--color-paper)]">Samstag · Sonntag</p>
+              <p class="text-sm text-[var(--color-paper)]/55 mt-1">Etwas länger, etwas später</p>
+            </dt>
+            <dd class="col-span-12 md:col-span-7 num-marker text-3xl text-[var(--color-gold-300)] md:text-right">
+              08:00 — 10:00
+            </dd>
+          </div>
+          <div class="grid grid-cols-12 items-baseline gap-3 py-7 border-t border-b border-[var(--color-paper)]/15">
+            <dt class="col-span-12 md:col-span-5">
+              <p class="font-display text-3xl text-[var(--color-paper)]">Montag</p>
+              <p class="text-sm text-[var(--color-paper)]/55 mt-1">Wir holen frische Ware</p>
+            </dt>
+            <dd class="col-span-12 md:col-span-7 swash-italic text-3xl text-[var(--color-gold-300)]/80 md:text-right">
+              — Ruhetag —
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu / buffet -->
+  <section class="py-24 lg:py-32 bg-[var(--color-paper)]">
+    <div class="container-page">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-10">
+        <div class="col-span-12 lg:col-span-4">
+          <SectionLabel num="III" title="Das Buffet" />
+          <h2 class="display-2 mt-6">
+            Was so<br/>
+            <span class="swash-italic text-[var(--color-gold-700)]">auf den Tisch kommt.</span>
+          </h2>
+          <p class="mt-6 text-[var(--color-ink-700)]/75 leading-relaxed">
+            Brot vom Bäcker drei Häuser weiter. Honig vom Imker am Glörsee.
+            Eier auf Wunsch direkt aus der Pfanne.
+          </p>
+
+          <figure class="mt-12 relative aspect-[3/4] overflow-hidden rounded-sm">
+            <img src={asset("/images/breakfast/buffet.jpg")} alt="Frühstücksbuffet mit Brötchen, Käse und Aufschnitt" class="w-full h-full object-cover" loading="lazy" />
+          </figure>
+        </div>
+
+        <div class="col-span-12 lg:col-span-8 lg:pl-10">
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
+            {buffet.map((b, i) => (
+              <li class="py-6 border-t border-[var(--color-ink-700)]/15">
+                <div class="flex items-baseline gap-3">
+                  <span class="num-marker text-[10px] text-[var(--color-gold-700)]">— {String(i+1).padStart(2,"0")}</span>
+                  <p class="font-display text-2xl">{b.cat}</p>
+                </div>
+                <ul class="mt-3 space-y-1.5 text-[var(--color-ink-700)]/80 text-sm">
+                  {b.items.map((it) => (
+                    <li class="flex items-baseline gap-2">
+                      <span class="text-[var(--color-gold-700)]/60">·</span>
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+
+          <p class="mt-12 swash-italic text-2xl text-[var(--color-gold-700)] max-w-md">
+            „Wir backen nicht selbst — aber wir wissen, wer es richtig macht."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diet hint strip -->
+  <section class="py-12 bg-[var(--color-gold-100)]/55 border-y border-[var(--color-gold-500)]/30">
+    <div class="container-page">
+      <div class="flex flex-wrap items-center gap-x-12 gap-y-4">
+        <p class="num-marker text-xs text-[var(--color-gold-700)] tracking-[0.25em]">— AUF WUNSCH —</p>
+        <p class="font-display text-xl">Vegetarisch · Vegan · Glutenfrei · Laktosefrei</p>
+        <p class="text-sm text-[var(--color-ink-700)]/70">Sagen Sie's einfach am Vorabend Bescheid.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Decor / atmosphere -->
+  <section class="py-24 lg:py-32 bg-[var(--color-paper-2)]/45">
+    <div class="container-page">
+      <div class="grid grid-cols-12 gap-4 md:gap-6">
+        <figure class="col-span-12 md:col-span-7 aspect-[5/4] rounded-sm overflow-hidden">
+          <img src={asset("/images/decor/decor-bad.jpg")} alt="Vitrine mit Antiquitäten" class="w-full h-full object-cover" loading="lazy" />
+        </figure>
+        <figure class="col-span-6 md:col-span-5 aspect-[4/5] rounded-sm overflow-hidden self-start mt-12">
+          <img src={asset("/images/decor/decor-degen.jpg")} alt="Wand­dekoration mit Säbeln" class="w-full h-full object-cover" loading="lazy" />
+        </figure>
+        <figure class="col-span-6 md:col-span-4 aspect-square rounded-sm overflow-hidden">
+          <img src={asset("/images/decor/decor-sextant.jpg")} alt="Sextant und Teleskop" class="w-full h-full object-cover" loading="lazy" />
+        </figure>
+        <div class="col-span-12 md:col-span-8 self-center pl-2 md:pl-8">
+          <SectionLabel num="IV" title="Atmosphäre" />
+          <h2 class="display-3 mt-5">
+            Säbel an der Wand,<br/>
+            <span class="swash-italic text-[var(--color-gold-700)]">Kupfer überm Kamin.</span>
+          </h2>
+          <p class="mt-6 text-[var(--color-ink-700)]/80 leading-relaxed max-w-lg">
+            Wir sammeln nicht systematisch, aber gerne. Manches ist von 1890,
+            manches von letzter Woche vom Trödelmarkt am Ennepedamm.
+            Beides hat Geschichte — eine längere und eine frischere.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-[var(--color-ink-900)] text-[var(--color-paper)]">
+    <div class="container-page flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <p class="eyebrow text-[var(--color-gold-300)]">Hunger?</p>
+        <p class="display-3 mt-3 text-[var(--color-paper)]">Zimmer mit Frühstück direkt online sichern.</p>
+      </div>
+      <BookButton variant="primary" />
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,228 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import SectionLabel from "~/components/SectionLabel.astro";
+import { asset } from "~/utils/asset";
+
+const reservoirs = [
+  { name: "Glörtalsperre",          area: "0,33 km²", built: "1904", note: "Größte Naherholung — Wandern, Sommerbäder, ein paar Tret­boote.", distance: "8 km" },
+  { name: "Heilenbecker Talsperre", area: "0,16 km²", built: "1942", note: "Stille Mischwald­runden. Im Herbst goldener Buchen­saum.",          distance: "5 km" },
+  { name: "Ennepetalsperre",        area: "1,15 km²", built: "1904", note: "Aussichts­punkte, Damm­krone, frische Brise.",                       distance: "7 km" },
+  { name: "Hasper Talsperre",       area: "0,53 km²", built: "1904", note: "Drei Stunden­runde am Nordufer für die Beine.",                        distance: "10 km" },
+];
+
+const trails = [
+  { name: "Jakobsweg · Etappe XII",  length: "Breckerfeld → Köln", note: "Der deutsche Camino, Muschel­zeichen an unserer Tür." },
+  { name: "Hansa-Wanderweg",         length: "26 km",              note: "Auf den Spuren der Hanse, durch fünf Höhendörfer." },
+  { name: "Breckerfelder Burgenrunde", length: "14 km",             note: "Drei Burg­ruinen, ein Mittag­essen, ein Eis." },
+  { name: "Talsperren-Sechser",      length: "42 km",              note: "Fortgeschrittene: alle Talsperren in einem Tag." },
+];
+
+const town = [
+  { name: "Jakobs­kirche",    note: "Spätgotisch, 14. Jh.", dist: "0,3 km" },
+  { name: "Altstadt",         note: "Fachwerk, Kopfstein­pflaster", dist: "0,4 km" },
+  { name: "Bürgerhalle",      note: "Konzerte & Kunst", dist: "0,5 km" },
+  { name: "Goethe-Schule",    note: "Klassizistischer Bau, 1820", dist: "0,6 km" },
+];
+---
+
+<Layout
+  title="Umgebung · Breckerfeld · Hotel Böving"
+  description="Breckerfeld, Sauerland — Wanderwege, Talsperren, Jakobsweg. Was es rund ums Hotel Böving zu entdecken gibt."
+>
+
+  <!-- Hero -->
+  <section class="relative pt-36 lg:pt-44 pb-16 bg-[var(--color-paper)] overflow-hidden">
+    <div class="container-page">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-12 items-end">
+        <div class="col-span-12 lg:col-span-7">
+          <p class="eyebrow flex items-center gap-3 anim-fade">
+            <span class="num-marker text-[var(--color-gold-700)]">— IV</span>
+            Umgebung
+          </p>
+          <h1 class="display-1 mt-6 anim-rise">
+            Vier Talsperren,<br/>
+            <span class="swash-italic text-[var(--color-gold-700)]">ein Jakobsweg.</span>
+          </h1>
+          <p class="mt-8 max-w-xl text-lg leading-relaxed text-[var(--color-ink-700)]/85 anim-rise delay-300">
+            Breckerfeld liegt da, wo das Sauerland anfängt. Anerkannter Luftkurort,
+            Stadtrecht von 1396, viel Wald, viel Wasser und seit dem Mittelalter eine Etappenstation
+            auf dem Camino nach Spanien.
+          </p>
+        </div>
+        <div class="col-span-12 lg:col-span-5 anim-rise delay-500">
+          <figure class="aspect-[4/3] overflow-hidden rounded-sm">
+            <img src={asset("/images/exterior/garden-view.jpg")} alt="Blick in den Hotelgarten" class="w-full h-full object-cover" />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map editorial -->
+  <section class="py-20 lg:py-28 bg-[var(--color-paper-2)]/45 border-y border-[var(--color-ink-700)]/10">
+    <div class="container-page">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-10 items-start">
+        <div class="col-span-12 lg:col-span-7">
+          <SectionLabel num="I" title="Karte" />
+          <h2 class="display-2 mt-6">
+            Hier sind wir<br/>
+            <span class="swash-italic text-[var(--color-gold-700)]">— in der Mitte.</span>
+          </h2>
+
+          <figure class="mt-10 relative aspect-[4/3] overflow-hidden rounded-sm">
+            <img src={asset("/images/location/karte.jpg")} alt="Karte Breckerfeld mit Hotel Böving" class="w-full h-full object-cover" />
+            <!-- Crosshair pin -->
+            <span aria-hidden="true" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+              <span class="absolute h-px w-16 bg-[var(--color-gold-500)]"></span>
+              <span class="absolute w-px h-16 bg-[var(--color-gold-500)]"></span>
+              <span class="relative w-3 h-3 rounded-full bg-[var(--color-gold-500)] ring-4 ring-[var(--color-paper)]"></span>
+            </span>
+            <span class="absolute top-1/2 left-1/2 mt-12 ml-6 num-marker text-[10px] tracking-[0.25em] text-[var(--color-ink-900)] bg-[var(--color-paper)]/90 px-2 py-1">
+              HOTEL BÖVING · 51.2593°N 7.4675°E
+            </span>
+          </figure>
+        </div>
+
+        <div class="col-span-12 lg:col-span-5 lg:pl-10 lg:pt-12">
+          <p class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.25em]">— ENTFERNUNGEN</p>
+          <ul class="mt-4 divide-y divide-[var(--color-ink-700)]/15">
+            <li class="flex items-baseline justify-between gap-3 py-3"><span>Köln Hbf</span><span class="num-marker text-sm">62 km · 50 min</span></li>
+            <li class="flex items-baseline justify-between gap-3 py-3"><span>Düsseldorf Flughafen</span><span class="num-marker text-sm">68 km · 55 min</span></li>
+            <li class="flex items-baseline justify-between gap-3 py-3"><span>Hagen Hbf (ICE)</span><span class="num-marker text-sm">20 km · 25 min</span></li>
+            <li class="flex items-baseline justify-between gap-3 py-3"><span>Wuppertal Hbf</span><span class="num-marker text-sm">28 km · 35 min</span></li>
+            <li class="flex items-baseline justify-between gap-3 py-3"><span>A1 · Anschluss Volmarstein</span><span class="num-marker text-sm">14 km · 15 min</span></li>
+            <li class="flex items-baseline justify-between gap-3 py-3"><span>A45 · Anschluss Lüden­scheid</span><span class="num-marker text-sm">22 km · 22 min</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservoirs — large editorial -->
+  <section class="py-24 lg:py-32 bg-[var(--color-ink-900)] text-[var(--color-paper)]">
+    <div class="container-page">
+      <SectionLabel num="II" title="Talsperren" class="text-[var(--color-gold-300)]" />
+      <div class="mt-8 flex flex-wrap items-end justify-between gap-x-12 gap-y-6">
+        <h2 class="display-2 max-w-2xl text-[var(--color-paper)]">
+          Vier Spiegel,<br/>
+          <span class="swash-italic text-[var(--color-gold-400)]">jeder mit eigenem Wetter.</span>
+        </h2>
+        <p class="max-w-md text-[var(--color-paper)]/65 leading-relaxed">
+          Das Sauerland zählt knapp dreißig — wir empfehlen die vier nächsten.
+          Die kleinste ist die schönste. Sagen die meisten Gäste.
+        </p>
+      </div>
+
+      <ul class="mt-14 grid grid-cols-1 gap-y-1">
+        {reservoirs.map((r, i) => (
+          <li class="group grid grid-cols-12 gap-3 lg:gap-6 py-7 border-t border-[var(--color-paper)]/15 last:border-b items-baseline">
+            <span class="col-span-2 num-marker text-xs text-[var(--color-gold-300)] tracking-[0.2em]">{String(i+1).padStart(2,"0")} —</span>
+            <div class="col-span-12 md:col-span-4">
+              <p class="display-3 leading-none text-[var(--color-paper)]">{r.name}</p>
+              <p class="num-marker text-[10px] text-[var(--color-gold-300)]/70 mt-2">{r.area} · seit {r.built}</p>
+            </div>
+            <p class="col-span-12 md:col-span-4 text-[var(--color-paper)]/75 text-sm leading-relaxed">{r.note}</p>
+            <span class="col-span-12 md:col-span-2 num-marker text-xs text-[var(--color-paper)]/70 md:text-right tracking-[0.15em]">
+              {r.distance}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Trails -->
+  <section class="py-24 lg:py-32 bg-[var(--color-paper)]">
+    <div class="container-page">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-10">
+        <div class="col-span-12 lg:col-span-4">
+          <SectionLabel num="III" title="Wege" />
+          <h2 class="display-2 mt-6">
+            Schnüren Sie<br/>
+            <span class="swash-italic text-[var(--color-gold-700)]">die Schuhe enger.</span>
+          </h2>
+          <p class="mt-6 text-[var(--color-ink-700)]/75">
+            Wanderkarten gibt's an der Rezeption — kostenlos, mit Stempel der Familie.
+            Eine Vesperdose stellen wir, wenn Sie's am Vorabend sagen.
+          </p>
+        </div>
+
+        <ul class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-6">
+          {trails.map((t, i) => (
+            <li class="py-7 border-t border-[var(--color-ink-700)]/15">
+              <p class="num-marker text-[10px] text-[var(--color-gold-700)] tracking-[0.2em]">— ROUTE {String(i+1).padStart(2,"0")}</p>
+              <p class="display-3 mt-2 leading-none">{t.name}</p>
+              <p class="num-marker text-xs text-[var(--color-ink-700)]/70 mt-3">{t.length}</p>
+              <p class="mt-3 text-sm text-[var(--color-ink-700)]/80 leading-relaxed">{t.note}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Town -->
+  <section class="py-24 lg:py-32 bg-[var(--color-paper-2)]/45">
+    <div class="container-page">
+      <div class="grid grid-cols-12 gap-x-6 gap-y-10 items-start">
+        <div class="col-span-12 lg:col-span-5 lg:order-2">
+          <SectionLabel num="IV" title="Altstadt" />
+          <h2 class="display-2 mt-6">
+            Fünf Minuten<br/>
+            <span class="swash-italic text-[var(--color-gold-700)]">zu Fuß zur Kirche.</span>
+          </h2>
+          <p class="mt-6 text-[var(--color-ink-700)]/75 leading-relaxed">
+            Breckerfeld bekam 1396 sein Stadtrecht. Geblieben sind Fachwerk, Pflaster,
+            eine spätgotische Hallen­kirche und der Geist eines Ortes,
+            der sich durch zwei Brände und ein Jahrtausend gerettet hat.
+          </p>
+
+          <ul class="mt-8 grid grid-cols-1 gap-2">
+            {town.map((t) => (
+              <li class="flex items-baseline justify-between gap-4 py-3 border-t border-[var(--color-ink-700)]/15">
+                <span class="font-display text-xl">{t.name}</span>
+                <span class="text-xs text-[var(--color-ink-700)]/55">{t.note}</span>
+                <span class="num-marker text-xs text-[var(--color-gold-700)] tracking-wider">{t.dist}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="col-span-12 lg:col-span-7 lg:order-1 grid grid-cols-6 gap-3">
+          <figure class="col-span-4 aspect-[4/5] rounded-sm overflow-hidden">
+            <img src={asset("/images/exterior/goldregen.jpg")} alt="Goldregen vor dem Hotel" class="w-full h-full object-cover" loading="lazy" />
+          </figure>
+          <figure class="col-span-2 aspect-square rounded-sm overflow-hidden mt-12">
+            <img src={asset("/images/exterior/e-charging.jpg")} alt="E-Auto-Ladestation am Haus" class="w-full h-full object-cover" loading="lazy" />
+          </figure>
+          <figure class="col-span-2 aspect-square rounded-sm overflow-hidden">
+            <img src={asset("/images/decor/decor-bad.jpg")} alt="Antiquitäten-Vitrine" class="w-full h-full object-cover" loading="lazy" />
+          </figure>
+          <figure class="col-span-4 aspect-[4/3] rounded-sm overflow-hidden">
+            <img src={asset("/images/location/restaurants.jpg")} alt="Essen und Trinken in Breckerfeld" class="w-full h-full object-cover" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Restaurants band -->
+  <section class="py-16 bg-[var(--color-gold-100)]/55 border-y border-[var(--color-gold-500)]/30">
+    <div class="container-page">
+      <div class="grid grid-cols-12 gap-6 items-center">
+        <div class="col-span-12 lg:col-span-7">
+          <p class="eyebrow text-[var(--color-gold-700)]">— ESSEN & TRINKEN</p>
+          <p class="display-3 mt-3">
+            Zehn Restaurants in Geh­weite.
+            <span class="swash-italic text-[var(--color-gold-700)]">Wir kennen sie alle.</span>
+          </p>
+        </div>
+        <p class="col-span-12 lg:col-span-5 text-[var(--color-ink-700)]/80">
+          Vom Italiener gegenüber bis zum Burg­fried mit Sauer­länder Klassikern —
+          eine Empfehlung gibt's an der Rezeption, eine Reservierung machen wir gerne für Sie.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</Layout>

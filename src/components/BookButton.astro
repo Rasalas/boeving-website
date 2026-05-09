@@ -1,0 +1,43 @@
+---
+import { site } from "~/data/site";
+
+interface Props {
+  variant?: "primary" | "ghost" | "gold" | "compact";
+  label?: string;
+  showSavings?: boolean;
+  class?: string;
+}
+
+const {
+  variant = "primary",
+  label = "Direkt buchen",
+  showSavings = true,
+  class: cls = "",
+} = Astro.props;
+
+const styles: Record<string, string> = {
+  primary: "bg-[var(--color-gold-500)] text-[var(--color-ink-900)] hover:bg-[var(--color-gold-400)] border border-[var(--color-gold-500)]",
+  gold:    "bg-[var(--color-gold-500)] text-[var(--color-ink-900)] hover:bg-[var(--color-gold-400)] border border-[var(--color-gold-500)]",
+  ghost:   "bg-transparent text-[var(--color-bone)] border border-[var(--color-gold-500)]/70 hover:bg-[var(--color-gold-500)] hover:text-[var(--color-ink-900)]",
+  compact: "bg-[var(--color-ink-700)] text-[var(--color-bone)] hover:bg-[var(--color-ink-800)] border border-[var(--color-ink-700)]",
+};
+---
+
+<a
+  href={site.booking.directUrl}
+  target="_blank"
+  rel="noopener"
+  class:list={[
+    "group relative inline-flex items-center gap-3 rounded-full px-6 py-3.5 transition-colors",
+    styles[variant],
+    cls,
+  ]}
+>
+  <span class="font-medium tracking-wide">{label}</span>
+  {showSavings && (
+    <span class="num-marker text-[10px] tracking-[0.2em] rounded-full px-2 py-0.5 bg-[var(--color-ink-900)]/15 text-current">
+      −{site.booking.directDiscount}&nbsp;€
+    </span>
+  )}
+  <span class="font-display transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+</a>

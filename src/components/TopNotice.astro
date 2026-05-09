@@ -1,0 +1,79 @@
+---
+import { site } from "~/data/site";
+---
+
+<aside
+  class="fixed top-0 inset-x-0 z-[55] bg-[var(--color-ink-900)] text-[var(--color-paper)] border-b border-[var(--color-gold-700)]/35 overflow-hidden"
+  data-top-notice
+>
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-[0.07]" style="background-image: repeating-linear-gradient(135deg, var(--color-gold-500) 0 1px, transparent 1px 14px);"></div>
+
+  <div class="container-page relative flex items-center justify-between gap-4 py-2.5">
+    <div class="flex items-center gap-3 lg:gap-5 min-w-0 overflow-hidden">
+      <span class="inline-flex shrink-0 items-center gap-1.5 rounded-sm bg-[var(--color-gold-500)] px-2 py-0.5 text-[var(--color-ink-900)] num-marker text-[10px] font-semibold tracking-[0.18em]">
+        BESTPREIS
+      </span>
+      <p class="truncate text-sm text-[var(--color-paper)]/90">
+        <span class="hidden sm:inline">Direktbuchung spart </span>
+        <span class="num-marker text-[var(--color-gold-300)] font-semibold">−{site.booking.directDiscount}&nbsp;€</span>
+        <span class="hidden sm:inline"> pro Nacht gegenüber Buchungsportalen.</span>
+        <span class="sm:hidden"> /Nacht direkt sparen</span>
+        <span class="hidden lg:inline mx-2 text-[var(--color-paper)]/30">·</span>
+        <span class="hidden lg:inline">Wochenend­paket Fr–So zusätzlich </span>
+        <span class="hidden lg:inline num-marker text-[var(--color-gold-300)] font-semibold">−{site.booking.weekendDiscount}&nbsp;€</span>
+      </p>
+    </div>
+    <div class="flex items-center gap-3 shrink-0">
+      <a
+        href={site.booking.directUrl}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-gold-500)] px-3 py-1 text-xs font-medium text-[var(--color-ink-900)] hover:bg-[var(--color-gold-400)] transition-colors"
+      >
+        <span>Direkt buchen</span>
+        <span class="font-display">→</span>
+      </a>
+      <button
+        type="button"
+        class="inline-flex h-7 w-7 items-center justify-center rounded-sm text-[var(--color-paper)]/55 hover:text-[var(--color-paper)] transition-colors"
+        aria-label="Hinweis schließen"
+        data-notice-close
+      >
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+  </div>
+</aside>
+
+<script>
+  const KEY = "hb-notice-dismissed-v1";
+  const notice = document.querySelector<HTMLElement>("[data-top-notice]");
+  const close = document.querySelector<HTMLButtonElement>("[data-notice-close]");
+
+  const setNoticeHeight = (visible: boolean) => {
+    if (visible && notice) {
+      const h = notice.getBoundingClientRect().height;
+      document.documentElement.style.setProperty("--notice-h", `${h}px`);
+    } else {
+      document.documentElement.style.setProperty("--notice-h", "0px");
+    }
+  };
+
+  if (notice) {
+    if (sessionStorage.getItem(KEY) === "1") {
+      notice.remove();
+      setNoticeHeight(false);
+    } else {
+      setNoticeHeight(true);
+      window.addEventListener("resize", () => setNoticeHeight(true));
+    }
+  } else {
+    setNoticeHeight(false);
+  }
+
+  close?.addEventListener("click", () => {
+    sessionStorage.setItem(KEY, "1");
+    notice?.remove();
+    setNoticeHeight(false);
+  });
+</script>
