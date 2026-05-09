@@ -3,6 +3,7 @@ import Layout from "~/layouts/Layout.astro";
 import SectionLabel from "~/components/SectionLabel.astro";
 import Star from "~/components/Star.astro";
 import BookButton from "~/components/BookButton.astro";
+import RomanDecrypt from "~/components/RomanDecrypt.astro";
 import { asset } from "~/utils/asset";
 
 const timeline = [
@@ -36,7 +37,7 @@ const credo = [
       <div class="grid grid-cols-12 gap-x-6 gap-y-12">
         <div class="col-span-12 lg:col-span-8 relative">
           <p class="eyebrow flex items-center gap-3 anim-fade">
-            <span class="num-marker text-[var(--color-gold-700)]">— I</span>
+            <span class="num-marker text-[var(--color-gold-700)]">— <RomanDecrypt value="I" /></span>
             Das Haus
           </p>
           <h1 class="display-1 mt-6 anim-rise">
@@ -76,7 +77,7 @@ const credo = [
       </div>
       <div>
         <p class="num-marker text-xs text-[var(--color-gold-700)]">— GENERATIONEN</p>
-        <p class="display-3 mt-2">IV</p>
+        <p class="display-3 mt-2"><RomanDecrypt value="IV" /></p>
         <p class="text-sm text-[var(--color-ink-700)]/65 mt-1">vier · Familie Böving</p>
       </div>
       <div>
@@ -149,7 +150,14 @@ const credo = [
             <span aria-hidden="true" class="absolute left-2 lg:left-1 top-9 inline-block w-2.5 h-2.5 rounded-full bg-[var(--color-gold-500)] ring-4 ring-[var(--color-ink-900)]"></span>
             <div class="col-span-12 md:col-span-3">
               <p class="display-3 leading-none text-[var(--color-paper)]">{e.year}</p>
-              <p class="num-marker text-[10px] text-[var(--color-gold-300)]/70 mt-1 tracking-[0.2em]">{e.roman}</p>
+              {e.roman !== "—" ? (
+                <RomanDecrypt
+                  value={e.roman}
+                  class="num-marker text-[10px] text-[var(--color-gold-300)]/70 mt-1 tracking-[0.2em]"
+                />
+              ) : (
+                <p class="num-marker text-[10px] text-[var(--color-gold-300)]/70 mt-1 tracking-[0.2em]">{e.roman}</p>
+              )}
             </div>
             <div class="col-span-12 md:col-span-9">
               <p class="font-display text-2xl text-[var(--color-paper)]">{e.title}</p>

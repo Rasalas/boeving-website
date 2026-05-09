@@ -1,6 +1,7 @@
 ---
 import { site, nav } from "~/data/site";
 import { asset } from "~/utils/asset";
+import RomanDecrypt from "~/components/RomanDecrypt.astro";
 const year = new Date().getFullYear();
 ---
 
@@ -97,7 +98,7 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="container-page border-t border-[var(--color-paper)]/10 py-6 mt-2 flex flex-col md:flex-row gap-3 justify-between items-start md:items-center text-xs text-[var(--color-paper)]/55">
-    <p class="num-marker">© {year} · Hotel Böving garni · seit MDCCCXC</p>
+    <p class="num-marker">© {year} · Hotel Böving garni · seit <RomanDecrypt value="MDCCCXC" /></p>
     <ul class="flex gap-5">
       <li><a href={asset("/impressum")} class="hover:text-[var(--color-gold-300)]">Impressum</a></li>
       <li><a href={asset("/datenschutz")} class="hover:text-[var(--color-gold-300)]">Datenschutz</a></li>

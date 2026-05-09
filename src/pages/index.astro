@@ -3,6 +3,7 @@ import Layout from "~/layouts/Layout.astro";
 import Star from "~/components/Star.astro";
 import SectionLabel from "~/components/SectionLabel.astro";
 import BookButton from "~/components/BookButton.astro";
+import RomanDecrypt from "~/components/RomanDecrypt.astro";
 import { site, rooms, amenities, localPois } from "~/data/site";
 import { asset } from "~/utils/asset";
 ---
@@ -37,8 +38,8 @@ import { asset } from "~/utils/asset";
     <div aria-hidden="true" class="absolute top-28 left-6 lg:left-10 hidden md:block num-marker text-xs text-[var(--color-gold-300)]/70 [writing-mode:vertical-rl] tracking-[0.3em]">
       LATITUDE 51.2593° N · LONGITUDE 7.4675° E
     </div>
-    <div aria-hidden="true" class="absolute top-28 right-6 lg:right-10 hidden md:block num-marker text-xs text-[var(--color-gold-300)]/70 [writing-mode:vertical-rl] tracking-[0.3em]">
-      AUSGABE Nr. CXXXIV · MMXXVI
+    <div class="absolute top-28 right-6 lg:right-10 hidden md:block num-marker text-xs text-[var(--color-gold-300)]/70 [writing-mode:vertical-rl] tracking-[0.3em]">
+      AUSGABE Nr. <RomanDecrypt value="CXXXIV" /> · <RomanDecrypt value="MMXXVI" />
     </div>
 
     <!-- Content -->
@@ -47,7 +48,7 @@ import { asset } from "~/utils/asset";
         <!-- Headline column -->
         <div class="col-span-12 lg:col-span-9">
           <p class="eyebrow text-[var(--color-gold-300)] anim-fade">
-            <span class="num-marker">— Anno MDCCCXC</span>  ·  Familienhaus in vierter Generation
+            <span class="num-marker">— Anno <RomanDecrypt value="MDCCCXC" /></span>  ·  Familienhaus in vierter Generation
           </p>
           <h1 class="display-1 mt-6 max-w-[18ch] text-[var(--color-paper)] anim-rise delay-200">
             Ein Haus,
@@ -170,12 +171,12 @@ import { asset } from "~/utils/asset";
               <p class="mt-1 text-[var(--color-ink-700)]/80">Eröffnung als Hotel</p>
             </div>
             <div>
-              <p class="num-marker text-[var(--color-gold-700)]">— IV. Generation</p>
+              <p class="num-marker text-[var(--color-gold-700)]">— <RomanDecrypt value="IV" />. Generation</p>
               <p class="mt-1 text-[var(--color-ink-700)]/80">heute geführt von Familie Böving</p>
             </div>
             <div>
-              <p class="num-marker text-[var(--color-gold-700)]">— XVII Zimmer</p>
-              <p class="mt-1 text-[var(--color-ink-700)]/80">XXVII Betten · ein Apartment</p>
+              <p class="num-marker text-[var(--color-gold-700)]">— <RomanDecrypt value="XVII" /> Zimmer</p>
+              <p class="mt-1 text-[var(--color-ink-700)]/80"><RomanDecrypt value="XXVII" /> Betten · ein Apartment</p>
             </div>
           </div>
 

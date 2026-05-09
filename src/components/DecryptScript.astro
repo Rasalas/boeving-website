@@ -15,9 +15,7 @@
 
   const tween = (el: Decryptable, target: string) => {
     if (el._decryptRaf) cancelAnimationFrame(el._decryptRaf);
-    const from = el.textContent ?? "";
-    const steps = Math.max(target.length, from.length, 1);
-    const padded = target.padEnd(steps, " ").slice(0, steps);
+    const steps = Math.max(target.length, 1);
     const start = performance.now();
 
     const tick = (now: number) => {
@@ -25,13 +23,11 @@
       let out = "";
       for (let i = 0; i < steps; i++) {
         const charT = Math.max(0, Math.min(1, (t - i / steps) * 2.4));
-        if (charT >= 1) {
-          out += padded[i];
-        } else {
-          out += CHARSET[Math.floor(Math.random() * CHARSET.length)];
-        }
+        out += charT >= 1
+          ? target[i]
+          : CHARSET[Math.floor(Math.random() * CHARSET.length)];
       }
-      el.textContent = out.replace(/\s+$/, "");
+      el.textContent = out;
       if (t < 1) el._decryptRaf = requestAnimationFrame(tick);
     };
     el._decryptRaf = requestAnimationFrame(tick);
